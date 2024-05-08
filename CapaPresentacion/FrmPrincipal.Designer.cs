@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             panel1 = new Panel();
+            btnCerrarSesion = new Button();
             panel7 = new Panel();
             panel6 = new Panel();
             panel5 = new Panel();
@@ -53,6 +54,7 @@
             label2 = new Label();
             label1 = new Label();
             pictureBox2 = new PictureBox();
+            panel9 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelContenedor.SuspendLayout();
@@ -62,6 +64,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(36, 32, 40);
+            panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel5);
@@ -77,6 +80,21 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(240, 611);
             panel1.TabIndex = 0;
+            // 
+            // btnCerrarSesion
+            // 
+            btnCerrarSesion.Cursor = Cursors.Hand;
+            btnCerrarSesion.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
+            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
+            btnCerrarSesion.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCerrarSesion.ForeColor = Color.LightGray;
+            btnCerrarSesion.Location = new Point(33, 506);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(153, 33);
+            btnCerrarSesion.TabIndex = 8;
+            btnCerrarSesion.Text = "Cerrar Sesion";
+            btnCerrarSesion.UseVisualStyleBackColor = true;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // panel7
             // 
@@ -204,6 +222,7 @@
             // 
             // panelContenedor
             // 
+            panelContenedor.Controls.Add(panel9);
             panelContenedor.Controls.Add(txtusuario);
             panelContenedor.Controls.Add(txtContraseña);
             panelContenedor.Controls.Add(Registrarse);
@@ -225,6 +244,7 @@
             // 
             txtusuario.Location = new Point(354, 271);
             txtusuario.Name = "txtusuario";
+            txtusuario.PlaceholderText = "username";
             txtusuario.Size = new Size(336, 23);
             txtusuario.TabIndex = 21;
             // 
@@ -232,6 +252,7 @@
             // 
             txtContraseña.Location = new Point(354, 357);
             txtContraseña.Name = "txtContraseña";
+            txtContraseña.PlaceholderText = "**********";
             txtContraseña.Size = new Size(336, 23);
             txtContraseña.TabIndex = 20;
             // 
@@ -239,11 +260,11 @@
             // 
             Registrarse.AutoSize = true;
             Registrarse.Cursor = Cursors.Hand;
-            Registrarse.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            Registrarse.Font = new Font("Britannic Bold", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Registrarse.ForeColor = Color.FromArgb(247, 115, 5);
-            Registrarse.Location = new Point(354, 488);
+            Registrarse.Location = new Point(354, 482);
             Registrarse.Name = "Registrarse";
-            Registrarse.Size = new Size(88, 20);
+            Registrarse.Size = new Size(81, 16);
             Registrarse.TabIndex = 19;
             Registrarse.Text = "Registrarse";
             // 
@@ -251,10 +272,10 @@
             // 
             label4.AutoSize = true;
             label4.Cursor = Cursors.Hand;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(596, 405);
+            label4.Font = new Font("Britannic Bold", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(587, 409);
             label4.Name = "label4";
-            label4.Size = new Size(94, 15);
+            label4.Size = new Size(103, 15);
             label4.TabIndex = 18;
             label4.Text = "Limpiar Campos";
             label4.Click += label4_Click;
@@ -333,6 +354,14 @@
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
             // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(247, 115, 5);
+            panel9.Location = new Point(354, 501);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(85, 3);
+            panel9.TabIndex = 17;
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -378,5 +407,7 @@
         private Label label2;
         private Label label1;
         private PictureBox pictureBox2;
+        private Button btnCerrarSesion;
+        private Panel panel9;
     }
 }

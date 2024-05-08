@@ -24,7 +24,9 @@ namespace CapaPresentacion
         frmListAutos formAutos = new frmListAutos();
         ListConductores formConductores = new ListConductores();
         register formRegister = new register();
-
+        List<Control> controles = new List<Control>();
+        string usuario = null;
+        string password = null;
         private void abrir_form_hija(object frmHija)
         {
             if (this.panelContenedor.Controls.Count > 0)
@@ -61,17 +63,18 @@ namespace CapaPresentacion
             btnConductor.Enabled = false;
             btnMante.Enabled = false;
             btnPagos.Enabled = false;
+            btnCerrarSesion.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (txtContraseña.Text.Length <= 10 && txtusuario.Text != null && txtusuario.Text != "")
             {
-                string contraseña = txtContraseña.Text;
-                string username = txtusuario.Text;
+                password = txtContraseña.Text;
+                usuario = txtusuario.Text;
 
-                bool valid_user = LogAuthUser.Instancia.validate_user(username, contraseña);
-                bool response = LogAuthUser.Instancia.validate_session(username);
+                bool valid_user = LogAuthUser.Instancia.validate_user(usuario, password);
+                bool response = LogAuthUser.Instancia.validate_session(usuario);
 
                 if (valid_user)
                 {
@@ -81,11 +84,23 @@ namespace CapaPresentacion
                     }
                     else
                     {
-                        MessageBox.Show("Session Iniciada con Exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        btnAuto.Enabled = false;
-                        btnConductor.Enabled = false;
-                        btnMante.Enabled = false;
-                        btnPagos.Enabled = false;
+
+                        bool login = LogAuthUser.Instancia.login(usuario, password);
+                        if (login)
+                        {
+                            MessageBox.Show("Session Iniciada con Exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            btnAuto.Enabled = true;
+                            btnConductor.Enabled = true;
+                            btnMante.Enabled = true;
+                            btnPagos.Enabled = true;
+                            btnCerrarSesion.Visible = true;
+                        }
+                        while (this.panelContenedor.Controls.Count > 0)
+                        {
+                            Control controlEliminado = this.panelContenedor.Controls[0];
+                            controles.Add(controlEliminado);
+                            this.panelContenedor.Controls.RemoveAt(0);
+                        }
                     }
                 }
                 else
@@ -100,6 +115,40 @@ namespace CapaPresentacion
             txtContraseña.Text = "";
             txtusuario.Text = "";
 
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+
+            bool cerrado = LogAuthUser.Instancia.logout(usuario);
+            string a = usuario;
+            if (cerrado)
+            {
+                MessageBox.Show("cerrado");
+
+            }
+            else
+            {
+                MessageBox.Show("error");
+            }
+            if (this.panelContenedor.Controls.Count > 0)
+            {
+                this.panelContenedor.Controls.RemoveAt(0);
+            }
+
+            foreach (Control item in controles)
+            {
+                this.panelContenedor.Controls.Add(item);
+
+            }
+
+            btnAuto.Enabled = true;
+            btnConductor.Enabled = true;
+            btnMante.Enabled = true;
+            btnPagos.Enabled = true;
+            btnCerrarSesion.Visible = false;
+            txtContraseña.Text = "";
+            txtusuario.Text = "";
         }
     }
 }

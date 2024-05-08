@@ -118,24 +118,29 @@ namespace CapaDatos
         }
 
 
-        public void logout(string sesion_id)
+        public bool logout(string username)
         {
             SqlCommand sqlComand = null;
-
+            bool activo=false;
             try
             {
                 SqlConnection con = Conexion.Instance.Conectar();
                 sqlComand = new SqlCommand("logout", con);
                 sqlComand.CommandType = CommandType.StoredProcedure;
 
-                sqlComand.Parameters.AddWithValue("@sesion_id", sesion_id);
+                sqlComand.Parameters.AddWithValue("@username",username);
                 con.Open();
-
+                bool i = (bool)sqlComand.ExecuteScalar();
+                if (i)
+                {
+                    activo = true;
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            return activo;
         }
 
     }

@@ -28,9 +28,9 @@ namespace CapaLogica
             return AuthUser.Instance.login_auth(username, password);
         }
 
-        public void logout(string sesion_id)
+        public bool logout(string username)
         {
-            AuthUser.Instance.logout(sesion_id);
+            return AuthUser.Instance.logout(username);
         }
 
 
