@@ -1,4 +1,5 @@
 ﻿using CapaDatos;
+using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,11 @@ namespace CapaLogica
         public bool validate_session(string sesion_id)
         {
             return AuthUser.Instance.validate_sessions(sesion_id);
+        }
+
+        public bool crear_usuario(Usuario usuario)
+        {
+            return AuthUser.Instance.crear_user(usuario);
         }
 
     }

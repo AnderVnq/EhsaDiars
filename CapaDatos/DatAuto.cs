@@ -188,7 +188,7 @@ namespace CapaDatos
         public Boolean createConductor(Conductor conductor)
         {
             SqlCommand sqlCommand = null;
-            Boolean creado = false;
+            bool creado = false;
 
             try
             {

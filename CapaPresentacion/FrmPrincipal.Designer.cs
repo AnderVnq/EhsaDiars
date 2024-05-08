@@ -267,6 +267,7 @@
             Registrarse.Size = new Size(81, 16);
             Registrarse.TabIndex = 19;
             Registrarse.Text = "Registrarse";
+            Registrarse.Click += Registrarse_Click;
             // 
             // label4
             // 

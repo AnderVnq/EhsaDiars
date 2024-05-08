@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Data;
-
+using CapaEntidad;
 
 namespace CapaDatos
 {
@@ -142,6 +142,47 @@ namespace CapaDatos
             }
             return activo;
         }
+
+
+        public bool crear_user(Usuario usuario)
+        {
+            SqlCommand sqlCommand = null;
+            bool creado = false;
+
+            try
+            {
+                SqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new SqlCommand("spInsertarUser", cn);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                sqlCommand.Parameters.AddWithValue("@nombre", usuario.nombre);
+                sqlCommand.Parameters.AddWithValue("@apellido_pat", usuario.apellido_pat);
+                sqlCommand.Parameters.AddWithValue("@apellido_mat",usuario.apellido_mat);
+                sqlCommand.Parameters.AddWithValue("@dni",usuario.dni);
+                sqlCommand.Parameters.AddWithValue("@username",usuario.username);
+                sqlCommand.Parameters.AddWithValue("@password",usuario.password);
+
+                cn.Open();
+                int i = sqlCommand.ExecuteNonQuery();
+                if (i > 0)
+                {
+                    creado = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (sqlCommand != null)
+                {
+                    sqlCommand.Connection.Close();
+                }
+            }
+            return creado;
+        }
+
 
     }
 }

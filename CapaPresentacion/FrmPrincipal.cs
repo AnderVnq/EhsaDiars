@@ -150,5 +150,11 @@ namespace CapaPresentacion
             txtContraseña.Text = "";
             txtusuario.Text = "";
         }
+
+        private void Registrarse_Click(object sender, EventArgs e)
+        {
+            register formRegister = new ();
+            formRegister.ShowDialog();
+        }
     }
 }
