@@ -257,6 +257,7 @@
             label4.Size = new Size(94, 15);
             label4.TabIndex = 18;
             label4.Text = "Limpiar Campos";
+            label4.Click += label4_Click;
             // 
             // button1
             // 
@@ -272,6 +273,7 @@
             button1.TabIndex = 17;
             button1.Text = "Ingresar";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // panel3
             // 

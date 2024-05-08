@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthUser.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="DatAuto.cs" />
     <Compile Include="DatConductor.cs" />

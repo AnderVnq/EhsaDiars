@@ -1,4 +1,5 @@
-﻿using CapaPresentacion.Autos;
+﻿using CapaLogica;
+using CapaPresentacion.Autos;
 using CapaPresentacion.Conductores;
 using CapaPresentacion.Usuarios;
 using System;
@@ -60,6 +61,45 @@ namespace CapaPresentacion
             btnConductor.Enabled = false;
             btnMante.Enabled = false;
             btnPagos.Enabled = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txtContraseña.Text.Length <= 10 && txtusuario.Text != null && txtusuario.Text != "")
+            {
+                string contraseña = txtContraseña.Text;
+                string username = txtusuario.Text;
+
+                bool valid_user = LogAuthUser.Instancia.validate_user(username, contraseña);
+                bool response = LogAuthUser.Instancia.validate_session(username);
+
+                if (valid_user)
+                {
+                    if (response)
+                    {
+                        MessageBox.Show("Erro al iniciar sesion , sesion ya iniciada", "Info", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Session Iniciada con Exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnAuto.Enabled = false;
+                        btnConductor.Enabled = false;
+                        btnMante.Enabled = false;
+                        btnPagos.Enabled = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Usuario no Encontrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            txtContraseña.Text = "";
+            txtusuario.Text = "";
+
         }
     }
 }

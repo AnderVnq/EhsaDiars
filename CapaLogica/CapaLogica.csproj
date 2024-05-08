@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsultaAPI.cs" />
+    <Compile Include="LogAuthUser.cs" />
     <Compile Include="LogAutos.cs" />
     <Compile Include="LogConductor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
