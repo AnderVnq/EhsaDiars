@@ -189,9 +189,9 @@ namespace CapaPresentacion
 
 
 
-        private void btnMante_Click(object sender, EventArgs e)
-        {
-            abrir_form_hija(formMantenimiento);
-        }
+
+
+
+
     }
 }
