@@ -13,5 +13,8 @@ namespace CapaPresentacion
             ApplicationConfiguration.Initialize();
             Application.Run(new FrmPrincipal());
         }
+
+        //cedeed
+
     }
 }
