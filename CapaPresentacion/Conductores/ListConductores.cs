@@ -79,7 +79,7 @@ namespace CapaPresentacion.Conductores
                     id = fila.Cells["id"].Value.ToString();
 
                 }
-                if (id !=null)
+                if (id != null)
                 {
                     bool resultado = LogConductor.Instancia.Eliminar_Conductor(Convert.ToInt32(id));
                     dataGridView1.Refresh();
@@ -90,7 +90,7 @@ namespace CapaPresentacion.Conductores
                 {
                     MessageBox.Show("Error en los datos", "Error");
                 }
-                
+
 
             }
             else

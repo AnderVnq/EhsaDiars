@@ -83,6 +83,7 @@
     <Compile Include="LogAuthUser.cs" />
     <Compile Include="LogAutos.cs" />
     <Compile Include="LogConductor.cs" />
+    <Compile Include="LogMantenimiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

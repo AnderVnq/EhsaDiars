@@ -83,6 +83,7 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="DatAuto.cs" />
     <Compile Include="DatConductor.cs" />
+    <Compile Include="datMantenimiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

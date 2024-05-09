@@ -1,6 +1,7 @@
 ﻿using CapaLogica;
 using CapaPresentacion.Autos;
 using CapaPresentacion.Conductores;
+using CapaPresentacion.Mantenimiento;
 using CapaPresentacion.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace CapaPresentacion
         ListConductores formConductores = new ListConductores();
         register formRegister = new register();
         List<Control> controles = new List<Control>();
+        formMantenimiento formMantenimiento = new formMantenimiento();
         string usuario = null;
         string password = null;
         private void abrir_form_hija(object frmHija)
@@ -44,9 +46,9 @@ namespace CapaPresentacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+
             this.Close();
-            
+
         }
 
         private void btnConductor_Click(object sender, EventArgs e)
@@ -126,8 +128,7 @@ namespace CapaPresentacion
             string a = usuario;
             if (cerrado)
             {
-                MessageBox.Show("cerrado");
-
+                MessageBox.Show("Sesion Cerrada con Exito", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -144,10 +145,10 @@ namespace CapaPresentacion
 
             }
 
-            btnAuto.Enabled = true;
-            btnConductor.Enabled = true;
-            btnMante.Enabled = true;
-            btnPagos.Enabled = true;
+            btnAuto.Enabled = false;
+            btnConductor.Enabled = false;
+            btnMante.Enabled = false;
+            btnPagos.Enabled = false;
             btnCerrarSesion.Visible = false;
             txtContraseña.Text = "";
             txtusuario.Text = "";
@@ -182,9 +183,14 @@ namespace CapaPresentacion
                     {
                         _ = LogAuthUser.Instancia.logout(txtusuario.Text);
                     }
-                    
+
                 }
             }
+        }
+
+        private void btnMante_Click(object sender, EventArgs e)
+        {
+            abrir_form_hija(formMantenimiento);
         }
     }
 }

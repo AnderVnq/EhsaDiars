@@ -170,6 +170,7 @@
             btnMante.TabIndex = 3;
             btnMante.Text = "Mantenimiento";
             btnMante.UseVisualStyleBackColor = true;
+            btnMante.Click += btnMante_Click;
             // 
             // btnAuto
             // 
