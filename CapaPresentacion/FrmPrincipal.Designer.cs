@@ -43,6 +43,7 @@
             pictureBox1 = new PictureBox();
             panel2 = new Panel();
             panelContenedor = new Panel();
+            panel9 = new Panel();
             txtusuario = new TextBox();
             txtContraseña = new TextBox();
             Registrarse = new Label();
@@ -54,7 +55,6 @@
             label2 = new Label();
             label1 = new Label();
             pictureBox2 = new PictureBox();
-            panel9 = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelContenedor.SuspendLayout();
@@ -240,6 +240,14 @@
             panelContenedor.Size = new Size(1044, 561);
             panelContenedor.TabIndex = 2;
             // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(247, 115, 5);
+            panel9.Location = new Point(354, 501);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(85, 3);
+            panel9.TabIndex = 17;
+            // 
             // txtusuario
             // 
             txtusuario.Location = new Point(354, 271);
@@ -355,14 +363,6 @@
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
             // 
-            // panel9
-            // 
-            panel9.BackColor = Color.FromArgb(247, 115, 5);
-            panel9.Location = new Point(354, 501);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(85, 3);
-            panel9.TabIndex = 17;
-            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -373,6 +373,7 @@
             Controls.Add(panel1);
             Name = "FrmPrincipal";
             Text = "FrmPrincipal";
+            FormClosing += FrmPrincipal_FormClosing;
             Load += FrmPrincipal_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

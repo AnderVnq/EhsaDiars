@@ -44,7 +44,9 @@ namespace CapaPresentacion
 
         private void button5_Click(object sender, EventArgs e)
         {
+            
             this.Close();
+            
         }
 
         private void btnConductor_Click(object sender, EventArgs e)
@@ -153,8 +155,36 @@ namespace CapaPresentacion
 
         private void Registrarse_Click(object sender, EventArgs e)
         {
-            register formRegister = new ();
+            register formRegister = new();
             formRegister.ShowDialog();
+        }
+
+        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Está seguro de que desea cerrar la aplicación?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            // Si el usuario hace clic en "No", cancelar el cierre del formulario
+            if (resultado == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(txtusuario.Text) && !string.IsNullOrEmpty(txtContraseña.Text))
+                {
+                    bool valid = LogAuthUser.Instancia.validate_user(txtusuario.Text, txtContraseña.Text);
+                    if (!valid)
+                    {
+                        txtContraseña.Text = "";
+                        txtusuario.Text = "";
+                    }
+                    else
+                    {
+                        _ = LogAuthUser.Instancia.logout(txtusuario.Text);
+                    }
+                    
+                }
+            }
         }
     }
 }
