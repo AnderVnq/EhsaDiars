@@ -44,9 +44,9 @@ namespace CapaPresentacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+
             this.Close();
-            
+
         }
 
         private void btnConductor_Click(object sender, EventArgs e)
@@ -182,9 +182,19 @@ namespace CapaPresentacion
                     {
                         _ = LogAuthUser.Instancia.logout(txtusuario.Text);
                     }
-                    
+
                 }
             }
+        }
+
+        private void btnPagos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMante_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
