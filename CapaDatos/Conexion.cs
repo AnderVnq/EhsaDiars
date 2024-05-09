@@ -16,6 +16,7 @@ namespace CapaDatos
             SqlConnection conexion = new SqlConnection();
             conexion.ConnectionString= "Data Source=ANDER\\SQLSERVER; Initial Catalog = ETHSA_bd2;" +"Integrated Security=true";
             return conexion;
+
         }
     }
 }
