@@ -38,18 +38,18 @@
             btnAgregar = new Button();
             groupBox1 = new GroupBox();
             label9 = new Label();
-            textBox3 = new TextBox();
+            txtcomentario = new TextBox();
             comboBox2 = new ComboBox();
             comboBox1 = new ComboBox();
             dateTimePicker1 = new DateTimePicker();
             label8 = new Label();
             label7 = new Label();
             label6 = new Label();
-            textBox2 = new TextBox();
+            txtcosto = new TextBox();
             panel2 = new Panel();
             label5 = new Label();
-            textBox1 = new TextBox();
-            txtNombre = new TextBox();
+            txtcomponente = new TextBox();
+            txtKilometraje = new TextBox();
             panel1 = new Panel();
             panel8 = new Panel();
             label4 = new Label();
@@ -74,6 +74,7 @@
             btnActualizar.TabIndex = 19;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // dataGridView1
             // 
@@ -151,18 +152,18 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(label9);
-            groupBox1.Controls.Add(textBox3);
+            groupBox1.Controls.Add(txtcomentario);
             groupBox1.Controls.Add(comboBox2);
             groupBox1.Controls.Add(comboBox1);
             groupBox1.Controls.Add(dateTimePicker1);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(textBox2);
+            groupBox1.Controls.Add(txtcosto);
             groupBox1.Controls.Add(panel2);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(textBox1);
-            groupBox1.Controls.Add(txtNombre);
+            groupBox1.Controls.Add(txtcomponente);
+            groupBox1.Controls.Add(txtKilometraje);
             groupBox1.Controls.Add(panel1);
             groupBox1.Controls.Add(panel8);
             groupBox1.Controls.Add(label4);
@@ -184,18 +185,18 @@
             label9.TabIndex = 38;
             label9.Text = "Fecha";
             // 
-            // textBox3
+            // txtcomentario
             // 
-            textBox3.Location = new Point(351, 146);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(286, 66);
-            textBox3.TabIndex = 37;
+            txtcomentario.Location = new Point(351, 146);
+            txtcomentario.Multiline = true;
+            txtcomentario.Name = "txtcomentario";
+            txtcomentario.Size = new Size(286, 66);
+            txtcomentario.TabIndex = 37;
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "-Preventivo", "-Correctivo" });
+            comboBox2.Items.AddRange(new object[] { "Preventivo", "Correctivo" });
             comboBox2.Location = new Point(351, 97);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(286, 23);
@@ -246,12 +247,12 @@
             label6.TabIndex = 30;
             label6.Text = "Vehiculo";
             // 
-            // textBox2
+            // txtcosto
             // 
-            textBox2.Location = new Point(6, 172);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(226, 23);
-            textBox2.TabIndex = 29;
+            txtcosto.Location = new Point(6, 172);
+            txtcosto.Name = "txtcosto";
+            txtcosto.Size = new Size(226, 23);
+            txtcosto.TabIndex = 29;
             // 
             // panel2
             // 
@@ -272,19 +273,19 @@
             label5.TabIndex = 27;
             label5.Text = "Costo";
             // 
-            // textBox1
+            // txtcomponente
             // 
-            textBox1.Location = new Point(6, 112);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(226, 23);
-            textBox1.TabIndex = 26;
+            txtcomponente.Location = new Point(6, 112);
+            txtcomponente.Name = "txtcomponente";
+            txtcomponente.Size = new Size(226, 23);
+            txtcomponente.TabIndex = 26;
             // 
-            // txtNombre
+            // txtKilometraje
             // 
-            txtNombre.Location = new Point(6, 51);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(226, 23);
-            txtNombre.TabIndex = 26;
+            txtKilometraje.Location = new Point(6, 51);
+            txtKilometraje.Name = "txtKilometraje";
+            txtKilometraje.Size = new Size(226, 23);
+            txtKilometraje.TabIndex = 26;
             // 
             // panel1
             // 
@@ -370,6 +371,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "formMantenimiento";
             Text = "formMantenimiento";
+            Load += formMantenimiento_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -389,17 +391,17 @@
         private Label label8;
         private Label label7;
         private Label label6;
-        private TextBox textBox2;
+        private TextBox txtcosto;
         private Panel panel2;
         private Label label5;
-        private TextBox textBox1;
-        private TextBox txtNombre;
+        private TextBox txtcomponente;
+        private TextBox txtKilometraje;
         private Panel panel1;
         private Panel panel8;
         private Label label4;
         private Label label3;
         private Label label9;
-        private TextBox textBox3;
+        private TextBox txtcomentario;
         private ComboBox comboBox2;
         private ComboBox comboBox1;
         private Button button1;

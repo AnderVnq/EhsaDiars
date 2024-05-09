@@ -27,5 +27,11 @@ namespace CapaLogica
         }
 
 
+        public bool crearMantenimiento(entMantenimiento entMantenimiento)
+        {
+            return datMantenimiento.Instance.crearMantenimiento(entMantenimiento);
+        }
+
+
     }
 }
