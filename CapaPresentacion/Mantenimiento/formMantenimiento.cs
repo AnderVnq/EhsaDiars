@@ -97,5 +97,15 @@ namespace CapaPresentacion.Mantenimiento
         {
             this.ActualizarGridView();
         }
+
+        private void btnAsigInterna_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAsigExterna_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

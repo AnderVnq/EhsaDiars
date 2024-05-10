@@ -54,8 +54,8 @@
             panel8 = new Panel();
             label4 = new Label();
             label3 = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            btnAsigInterna = new Button();
+            btnAsigExterna = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -325,43 +325,45 @@
             label3.TabIndex = 24;
             label3.Text = "Kilometraje";
             // 
-            // button1
+            // btnAsigInterna
             // 
-            button1.BackColor = Color.FromArgb(36, 32, 40);
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = Color.LightGray;
-            button1.Location = new Point(852, 334);
-            button1.Name = "button1";
-            button1.Size = new Size(140, 31);
-            button1.TabIndex = 21;
-            button1.Text = "Asignacion Interna";
-            button1.UseVisualStyleBackColor = false;
+            btnAsigInterna.BackColor = Color.FromArgb(36, 32, 40);
+            btnAsigInterna.Cursor = Cursors.Hand;
+            btnAsigInterna.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
+            btnAsigInterna.FlatStyle = FlatStyle.Flat;
+            btnAsigInterna.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAsigInterna.ForeColor = Color.LightGray;
+            btnAsigInterna.Location = new Point(852, 334);
+            btnAsigInterna.Name = "btnAsigInterna";
+            btnAsigInterna.Size = new Size(140, 31);
+            btnAsigInterna.TabIndex = 21;
+            btnAsigInterna.Text = "Asignacion Interna";
+            btnAsigInterna.UseVisualStyleBackColor = false;
+            btnAsigInterna.Click += btnAsigInterna_Click;
             // 
-            // button2
+            // btnAsigExterna
             // 
-            button2.BackColor = Color.FromArgb(36, 32, 40);
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.ForeColor = Color.LightGray;
-            button2.Location = new Point(852, 399);
-            button2.Name = "button2";
-            button2.Size = new Size(140, 31);
-            button2.TabIndex = 22;
-            button2.Text = "Asignacion Externa";
-            button2.UseVisualStyleBackColor = false;
+            btnAsigExterna.BackColor = Color.FromArgb(36, 32, 40);
+            btnAsigExterna.Cursor = Cursors.Hand;
+            btnAsigExterna.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
+            btnAsigExterna.FlatStyle = FlatStyle.Flat;
+            btnAsigExterna.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAsigExterna.ForeColor = Color.LightGray;
+            btnAsigExterna.Location = new Point(852, 399);
+            btnAsigExterna.Name = "btnAsigExterna";
+            btnAsigExterna.Size = new Size(140, 31);
+            btnAsigExterna.TabIndex = 22;
+            btnAsigExterna.Text = "Asignacion Externa";
+            btnAsigExterna.UseVisualStyleBackColor = false;
+            btnAsigExterna.Click += btnAsigExterna_Click;
             // 
             // formMantenimiento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1044, 561);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnAsigExterna);
+            Controls.Add(btnAsigInterna);
             Controls.Add(groupBox1);
             Controls.Add(btnActualizar);
             Controls.Add(dataGridView1);
@@ -404,7 +406,7 @@
         private TextBox txtcomentario;
         private ComboBox comboBox2;
         private ComboBox comboBox1;
-        private Button button1;
-        private Button button2;
+        private Button btnAsigInterna;
+        private Button btnAsigExterna;
     }
 }
