@@ -17,5 +17,6 @@ namespace CapaEntidad
         public string capacidad { get; set; }
         public string kilometraje { get; set; }
         public bool estado { get; set; }
+        public string placa { get; set; }
     }
 }

@@ -39,15 +39,17 @@
             label5 = new Label();
             label6 = new Label();
             dateTimePicker1 = new DateTimePicker();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
+            txtModelo = new TextBox();
+            txtMarca = new TextBox();
+            txtCapacidad = new TextBox();
+            txtKilometraje = new TextBox();
             btnCancelar = new Button();
             btnGuardar = new Button();
             groupBox1 = new GroupBox();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            radioMantenimiento = new RadioButton();
+            radioDisponible = new RadioButton();
+            txtPlaca = new TextBox();
+            label8 = new Label();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -110,7 +112,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(120, 154);
+            label2.Location = new Point(36, 154);
             label2.Name = "label2";
             label2.Size = new Size(47, 19);
             label2.TabIndex = 3;
@@ -120,7 +122,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(111, 280);
+            label3.Location = new Point(36, 222);
             label3.Name = "label3";
             label3.Size = new Size(56, 19);
             label3.TabIndex = 4;
@@ -140,7 +142,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(362, 154);
+            label5.Location = new Point(317, 154);
             label5.Name = "label5";
             label5.Size = new Size(133, 19);
             label5.TabIndex = 6;
@@ -150,7 +152,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(383, 280);
+            label6.Location = new Point(317, 222);
             label6.Name = "label6";
             label6.Size = new Size(77, 19);
             label6.TabIndex = 7;
@@ -163,33 +165,33 @@
             dateTimePicker1.Size = new Size(225, 23);
             dateTimePicker1.TabIndex = 8;
             // 
-            // textBox1
+            // txtModelo
             // 
-            textBox1.Location = new Point(36, 313);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(227, 23);
-            textBox1.TabIndex = 9;
+            txtModelo.Location = new Point(36, 244);
+            txtModelo.Name = "txtModelo";
+            txtModelo.Size = new Size(227, 23);
+            txtModelo.TabIndex = 9;
             // 
-            // textBox2
+            // txtMarca
             // 
-            textBox2.Location = new Point(35, 204);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(227, 23);
-            textBox2.TabIndex = 10;
+            txtMarca.Location = new Point(36, 176);
+            txtMarca.Name = "txtMarca";
+            txtMarca.Size = new Size(227, 23);
+            txtMarca.TabIndex = 10;
             // 
-            // textBox3
+            // txtCapacidad
             // 
-            textBox3.Location = new Point(316, 208);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(214, 23);
-            textBox3.TabIndex = 11;
+            txtCapacidad.Location = new Point(317, 176);
+            txtCapacidad.Name = "txtCapacidad";
+            txtCapacidad.Size = new Size(214, 23);
+            txtCapacidad.TabIndex = 11;
             // 
-            // textBox4
+            // txtKilometraje
             // 
-            textBox4.Location = new Point(317, 313);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(214, 23);
-            textBox4.TabIndex = 12;
+            txtKilometraje.Location = new Point(317, 244);
+            txtKilometraje.Name = "txtKilometraje";
+            txtKilometraje.Size = new Size(214, 23);
+            txtKilometraje.TabIndex = 12;
             // 
             // btnCancelar
             // 
@@ -205,7 +207,7 @@
             btnCancelar.TabIndex = 15;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += Editar_Click;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnGuardar
             // 
@@ -215,7 +217,7 @@
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnGuardar.ForeColor = Color.LightGray;
-            btnGuardar.Location = new Point(110, 494);
+            btnGuardar.Location = new Point(111, 494);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(117, 31);
             btnGuardar.TabIndex = 14;
@@ -225,8 +227,8 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Controls.Add(radioMantenimiento);
+            groupBox1.Controls.Add(radioDisponible);
             groupBox1.Location = new Point(148, 381);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(262, 64);
@@ -235,40 +237,59 @@
             groupBox1.Text = "Estado Vehiculo";
             groupBox1.Visible = false;
             // 
-            // radioButton2
+            // radioMantenimiento
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(133, 39);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(123, 19);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "En mantenimiento";
-            radioButton2.UseVisualStyleBackColor = true;
+            radioMantenimiento.AutoSize = true;
+            radioMantenimiento.Location = new Point(133, 39);
+            radioMantenimiento.Name = "radioMantenimiento";
+            radioMantenimiento.Size = new Size(123, 19);
+            radioMantenimiento.TabIndex = 1;
+            radioMantenimiento.TabStop = true;
+            radioMantenimiento.Text = "En mantenimiento";
+            radioMantenimiento.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioDisponible
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(20, 39);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(81, 19);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Disponible";
-            radioButton1.UseVisualStyleBackColor = true;
+            radioDisponible.AutoSize = true;
+            radioDisponible.Location = new Point(20, 39);
+            radioDisponible.Name = "radioDisponible";
+            radioDisponible.Size = new Size(81, 19);
+            radioDisponible.TabIndex = 0;
+            radioDisponible.TabStop = true;
+            radioDisponible.Text = "Disponible";
+            radioDisponible.UseVisualStyleBackColor = true;
+            // 
+            // txtPlaca
+            // 
+            txtPlaca.Location = new Point(36, 305);
+            txtPlaca.Name = "txtPlaca";
+            txtPlaca.Size = new Size(227, 23);
+            txtPlaca.TabIndex = 18;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(36, 283);
+            label8.Name = "label8";
+            label8.Size = new Size(74, 19);
+            label8.TabIndex = 17;
+            label8.Text = "Placa Auto";
             // 
             // frmInsertVehiculo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(590, 560);
+            Controls.Add(txtPlaca);
+            Controls.Add(label8);
             Controls.Add(groupBox1);
             Controls.Add(btnCancelar);
             Controls.Add(btnGuardar);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtKilometraje);
+            Controls.Add(txtCapacidad);
+            Controls.Add(txtMarca);
+            Controls.Add(txtModelo);
             Controls.Add(dateTimePicker1);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -302,15 +323,17 @@
         private Label label5;
         private Label label6;
         private DateTimePicker dateTimePicker1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox txtModelo;
+        private TextBox txtMarca;
+        private TextBox txtCapacidad;
+        private TextBox txtKilometraje;
         private Button btnCancelar;
         private Button btnGuardar;
         private GroupBox groupBox1;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private RadioButton radioMantenimiento;
+        private RadioButton radioDisponible;
         private Label label7;
+        private TextBox txtPlaca;
+        private Label label8;
     }
 }

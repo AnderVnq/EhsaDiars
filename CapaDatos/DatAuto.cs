@@ -1,4 +1,4 @@
-﻿using CapaEntidad;
+﻿ using CapaEntidad;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -95,15 +95,15 @@ namespace CapaDatos
 
 
 
-        public Conductor Get_Id(int id)
+        public Automovil Get_Id(int id)
         {
             SqlCommand sqlCommand = null;
-            Conductor conductor = new Conductor();
+            Automovil auto = new Automovil();
 
             try
             {
                 SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spConductorById", cn);
+                sqlCommand = new SqlCommand("vehiculo_by_id", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 cn.Open();
@@ -112,15 +112,15 @@ namespace CapaDatos
                 if (reader.Read())
                 {
 
-                    conductor.id = Convert.ToInt32(reader["id_conductor"]);
-                    conductor.nombre = reader["nombre"].ToString();
-                    conductor.apellido = reader["apellido"].ToString();
-                    conductor.dni = reader["dni"].ToString();
-                    conductor.licencia = reader["licencia"].ToString();
-                    conductor.tipo_licencia = reader["tipo_licencia"].ToString();
-                    conductor.telefono = reader["telefono"].ToString();
-                    conductor.direccion = reader["direccion"].ToString();
-                    conductor.fecha_contratacion = Convert.ToDateTime(reader["fecha_contratacion"].ToString());
+                    auto.id = Convert.ToInt32(reader["id_vehiculo"]);
+                    auto.placa = reader["placa"].ToString();
+                    auto.id_conductor = Convert.ToInt32(reader["id_conductor"]);
+                    auto.marca = reader["marca"].ToString();
+                    auto.modelo = reader["modelo"].ToString();
+                    auto.fabricacion = Convert.ToDateTime(reader["anio_fabricacion"]);
+                    auto.kilometraje = reader["kilometraje"].ToString();
+                    auto.estado = Convert.ToBoolean(reader["estado"]);
+                    auto.capacidad = reader["capacidad_pasajeros"].ToString();
                 }
                 else
                 {
@@ -137,29 +137,30 @@ namespace CapaDatos
                 sqlCommand.Connection.Close();
             }
 
-            return conductor;
+            return auto;
         }
 
 
-        public Boolean ActualizarConductor(int id, string nombre, string apellido, string licencia, string tipo_licencia, string telefono, string direccion, string dni)
+        public Boolean ActualizarAuto(Automovil auto)
         {
             SqlCommand sqlCommand = null;
             Boolean actualiza = false;
             try
             {
                 SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spUpdateConductor", cn);
+                sqlCommand = new SqlCommand("spUpdateVehiculo", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 // Agregar parámetros para el procedimiento almacenado
-                sqlCommand.Parameters.AddWithValue("@Id", id);
-                sqlCommand.Parameters.AddWithValue("@nombre", nombre);
-                sqlCommand.Parameters.AddWithValue("@apellido", apellido);
-                sqlCommand.Parameters.AddWithValue("@licencia", licencia);
-                sqlCommand.Parameters.AddWithValue("@tipo_licencia", tipo_licencia);
-                sqlCommand.Parameters.AddWithValue("@telefono", telefono);
-                sqlCommand.Parameters.AddWithValue("@direccion", direccion);
-                sqlCommand.Parameters.AddWithValue("@dni", dni);
+                sqlCommand.Parameters.AddWithValue("@id", auto.id);
+                sqlCommand.Parameters.AddWithValue("@id_conductor",auto.id_conductor);
+                sqlCommand.Parameters.AddWithValue("@marca",auto.marca);
+                sqlCommand.Parameters.AddWithValue("@modelo",auto.modelo);
+                sqlCommand.Parameters.AddWithValue("@fabricacion", auto.fabricacion);
+                sqlCommand.Parameters.AddWithValue("@capacidad", auto.capacidad);
+                sqlCommand.Parameters.AddWithValue("@kilometraje", auto.kilometraje);
+                sqlCommand.Parameters.AddWithValue("@placa",auto.placa);
+                sqlCommand.Parameters.AddWithValue("@estado", auto.estado);
                 // Agrega otros parámetros para otros campos que deseas actualizar
 
                 cn.Open();
@@ -185,7 +186,7 @@ namespace CapaDatos
         }
 
 
-        public Boolean createConductor(Conductor conductor)
+        public Boolean createAutomovil(Automovil auto)
         {
             SqlCommand sqlCommand = null;
             bool creado = false;
@@ -193,17 +194,16 @@ namespace CapaDatos
             try
             {
                 SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spInsertarConductor", cn);
+                sqlCommand = new SqlCommand("spInsertVehiculo", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                sqlCommand.Parameters.AddWithValue("@nombre", conductor.nombre);
-                sqlCommand.Parameters.AddWithValue("@apellido", conductor.apellido);
-                sqlCommand.Parameters.AddWithValue("@licencia", conductor.licencia);
-                sqlCommand.Parameters.AddWithValue("@tipo_licencia", conductor.tipo_licencia);
-                sqlCommand.Parameters.AddWithValue("@telefono", conductor.telefono);
-                sqlCommand.Parameters.AddWithValue("@direccion", conductor.direccion);
-                sqlCommand.Parameters.AddWithValue("@dni", conductor.dni);
-                sqlCommand.Parameters.AddWithValue("@fecha", conductor.fecha_contratacion);
+                sqlCommand.Parameters.AddWithValue("@id_conductor",auto.id_conductor);
+                sqlCommand.Parameters.AddWithValue("@marca", auto.marca);
+                sqlCommand.Parameters.AddWithValue("@modelo", auto.modelo);
+                sqlCommand.Parameters.AddWithValue("@fabricacion",auto.fabricacion);
+                sqlCommand.Parameters.AddWithValue("@capacidad", auto.capacidad);
+                sqlCommand.Parameters.AddWithValue("@kilometraje", auto.kilometraje);
+                sqlCommand.Parameters.AddWithValue("@placa", auto.placa);
 
                 cn.Open();
                 int i = sqlCommand.ExecuteNonQuery();
@@ -229,7 +229,7 @@ namespace CapaDatos
 
 
 
-        public Boolean deleteConductor(int id)
+        public Boolean deleteAuto(int id)
         {
             SqlCommand sqlCommand = null;
             Boolean eliminado = false;
@@ -237,7 +237,7 @@ namespace CapaDatos
             try
             {
                 SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spEliminar", cn);
+                sqlCommand = new SqlCommand("spEliminarAuto", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.AddWithValue("@id", id);

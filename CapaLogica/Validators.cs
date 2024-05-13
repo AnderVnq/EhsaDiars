@@ -36,5 +36,42 @@ namespace CapaLogica
             return true;
         }
 
+        public static bool ValidarSoloNumeros(string texto)
+        {
+            Regex regex = new Regex("^[0-9]+$");
+
+            return regex.IsMatch(texto);
+        }
+
+
+
+
+        public static bool ValidarRepeticion(string texto, int maxRepetitions)
+        {
+            if (string.IsNullOrEmpty(texto) || texto.Length < maxRepetitions)
+            {
+                return true;
+            }
+
+            char prevChar = texto[0];
+            int count = 1; // Contador para el número de repeticiones.
+            for (int i = 1; i < texto.Length; i++)
+            {
+                if (texto[i] == prevChar)
+                {
+                    count++;
+                }
+                else
+                {
+                    count = 1;
+                    prevChar = texto[i];
+                }
+                if (count > maxRepetitions)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

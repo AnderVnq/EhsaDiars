@@ -2,6 +2,7 @@
 using CapaEntidad;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,5 +41,32 @@ namespace CapaLogica
         {
            return DatAuto.Instance.detalle_vehiculo(id);
         }
+
+
+
+        public bool create_auto(Automovil auto)
+        {
+
+            return DatAuto.Instance.createAutomovil(auto);
+
+        }
+
+        public bool update_vehiculo(Automovil auto)
+        {
+            return DatAuto.Instance.ActualizarAuto(auto);
+        }
+
+        public Automovil get_by_id(int id)
+        {
+            return DatAuto.Instance.Get_Id(id);
+        }
+
+        public bool eliminar_auto(int id)
+        {
+            return DatAuto.Instance.deleteAuto(id);
+        }
+
+
+
     }
 }

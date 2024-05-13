@@ -75,10 +75,10 @@ namespace CapaPresentacion.Autos
 
         private void btnDetalle_Click(object sender, EventArgs e)
         {
-            if(dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
             {
                 string id = null;
-                foreach(DataGridViewRow row in dataGridView1.SelectedRows)
+                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                 {
                     id = row.Cells["id"].Value.ToString();
                 }
@@ -87,6 +87,12 @@ namespace CapaPresentacion.Autos
                 frmDetalle.dato = id;
                 frmDetalle.ShowDialog();
             }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = LogAutos.Instancia.listar_autos();
+            lblCountAutos.Text = dataGridView1.RowCount.ToString();
         }
     }
 }

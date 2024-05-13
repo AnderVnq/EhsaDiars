@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -140,7 +141,19 @@ namespace CapaPresentacion.Conductores
 
         private void btnConsulta_Click(object sender, EventArgs e)
         {
-            ConsultaCliente(txtDni.Text);
+            if (Validators.ValidarDNI(txtDni.Text))
+            {
+                ConsultaCliente(txtDni.Text);
+            }
+            else if (Validators.ValidarRepeticion(txtDni.Text, 4))
+            {
+                MessageBox.Show("Error DNI no valido");
+            }
+            else
+            {
+                MessageBox.Show("Error DNI no valido");
+            }
+            
         }
 
 
@@ -162,6 +175,10 @@ namespace CapaPresentacion.Conductores
                         txtNombre.Text = $"{respuesta.body.preNombres}";
                         txtApellido.Text = respuesta.body.apePaterno;
                         txtDireccion.Text = respuesta.body.desDireccion;
+                        string fechaString = respuesta.body.feNacimiento;
+                        DateTime fechaNacimiento = DateTime.ParseExact(fechaString, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        dateTimePicker1.Value = fechaNacimiento;
+                        //MessageBox.Show($"response {respuesta.body.feNacimiento}");
 
                     }
                     else
