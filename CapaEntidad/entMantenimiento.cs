@@ -17,5 +17,6 @@ namespace CapaEntidad
         public DateTime fecha_mantenimiento { get; set; }
         public string componente { get; set; }
         public string comentario { get; set; }
+        public bool estado {  get; set; }
     }
 }

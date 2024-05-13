@@ -46,6 +46,7 @@ namespace CapaDatos
                     mante.kilometraje = reader["kilometraje"].ToString().ToLower();
                     mante.comentario = reader["comentarios"].ToString().ToLower();
                     mante.costo = Convert.ToSingle(reader["costo"]);
+                    mante.estado = Convert.ToBoolean(reader["estado"]);
                     lista.Add(mante);
                 }
             }
