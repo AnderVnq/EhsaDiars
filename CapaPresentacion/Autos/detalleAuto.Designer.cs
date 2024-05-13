@@ -71,6 +71,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(643, 31);
             panel1.TabIndex = 0;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // label15
             // 
@@ -94,6 +95,7 @@
             label1.Size = new Size(148, 20);
             label1.TabIndex = 0;
             label1.Text = "DETALLE VEHICULO";
+            label1.MouseDown += label1_MouseDown;
             // 
             // label2
             // 

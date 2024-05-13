@@ -85,6 +85,7 @@
     <Compile Include="LogConductor.cs" />
     <Compile Include="LogMantenimiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">

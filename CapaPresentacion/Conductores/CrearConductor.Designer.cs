@@ -243,6 +243,7 @@
             panel1.Size = new Size(625, 34);
             panel1.TabIndex = 23;
             panel1.Paint += panel1_Paint;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // label10
             // 
@@ -266,6 +267,7 @@
             label9.Size = new Size(172, 25);
             label9.TabIndex = 0;
             label9.Text = "Agregar Conductor";
+            label9.MouseDown += label9_MouseDown;
             // 
             // groupBox1
             // 

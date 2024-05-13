@@ -30,22 +30,22 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManteInterno));
             panel1 = new Panel();
+            pictureBox2 = new PictureBox();
             label1 = new Label();
             panel8 = new Panel();
             label3 = new Label();
             panel2 = new Panel();
             label2 = new Label();
             groupBox1 = new GroupBox();
+            comboContratista = new ComboBox();
             groupBox2 = new GroupBox();
+            comboMante = new ComboBox();
             datetimeFechaInicio = new DateTimePicker();
             dateFechaFin = new DateTimePicker();
-            comboMante = new ComboBox();
-            comboContratista = new ComboBox();
-            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -58,6 +58,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(575, 27);
             panel1.TabIndex = 0;
+            panel1.MouseDown += panel1_MouseDown;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Cursor = Cursors.Hand;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(534, -2);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(41, 29);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 43;
+            pictureBox2.TabStop = false;
             // 
             // label1
             // 
@@ -68,6 +80,7 @@
             label1.Size = new Size(220, 29);
             label1.TabIndex = 0;
             label1.Text = "Asignacion Mantenimiento";
+            label1.MouseDown += label1_MouseDown;
             // 
             // panel8
             // 
@@ -117,6 +130,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Seleccionar Contratista Disponible";
             // 
+            // comboContratista
+            // 
+            comboContratista.FormattingEnabled = true;
+            comboContratista.Location = new Point(6, 43);
+            comboContratista.Name = "comboContratista";
+            comboContratista.Size = new Size(238, 23);
+            comboContratista.TabIndex = 0;
+            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(comboMante);
@@ -126,6 +147,14 @@
             groupBox2.TabIndex = 40;
             groupBox2.TabStop = false;
             groupBox2.Text = "Seleccionar Mantenimientos ";
+            // 
+            // comboMante
+            // 
+            comboMante.FormattingEnabled = true;
+            comboMante.Location = new Point(6, 43);
+            comboMante.Name = "comboMante";
+            comboMante.Size = new Size(230, 23);
+            comboMante.TabIndex = 0;
             // 
             // datetimeFechaInicio
             // 
@@ -140,33 +169,6 @@
             dateFechaFin.Name = "dateFechaFin";
             dateFechaFin.Size = new Size(250, 23);
             dateFechaFin.TabIndex = 42;
-            // 
-            // comboMante
-            // 
-            comboMante.FormattingEnabled = true;
-            comboMante.Location = new Point(6, 43);
-            comboMante.Name = "comboMante";
-            comboMante.Size = new Size(230, 23);
-            comboMante.TabIndex = 0;
-            // 
-            // comboContratista
-            // 
-            comboContratista.FormattingEnabled = true;
-            comboContratista.Location = new Point(6, 43);
-            comboContratista.Name = "comboContratista";
-            comboContratista.Size = new Size(238, 23);
-            comboContratista.TabIndex = 0;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Cursor = Cursors.Hand;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(534, -2);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(41, 29);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 43;
-            pictureBox2.TabStop = false;
             // 
             // ManteInterno
             // 
@@ -187,9 +189,9 @@
             Text = "ManteInterno";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

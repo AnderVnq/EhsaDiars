@@ -321,6 +321,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "register";
             Text = "Registro Usuario";
+            Load += register_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

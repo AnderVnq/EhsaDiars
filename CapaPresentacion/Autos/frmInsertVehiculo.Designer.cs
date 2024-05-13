@@ -62,6 +62,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(590, 37);
             panel1.TabIndex = 0;
+            panel1.MouseDown += panel1_MouseDown;
             // 
             // label7
             // 
@@ -85,6 +86,7 @@
             lblTitulo.Size = new Size(142, 21);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Agregar Vehiculo";
+            lblTitulo.MouseDown += lblTitulo_MouseDown;
             // 
             // label1
             // 

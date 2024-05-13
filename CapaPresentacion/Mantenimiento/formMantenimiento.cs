@@ -20,7 +20,8 @@ namespace CapaPresentacion.Mantenimiento
             InitializeComponent();
 
             dataGridView1.DataSource = LogMantenimiento.Instancia.lista_mantenimientos();
-
+            comboBox1.DropDownStyle=ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
 
@@ -96,6 +97,7 @@ namespace CapaPresentacion.Mantenimiento
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             this.ActualizarGridView();
+            
         }
 
         private void btnAsigInterna_Click(object sender, EventArgs e)
