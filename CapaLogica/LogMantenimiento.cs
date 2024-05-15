@@ -32,6 +32,11 @@ namespace CapaLogica
             return datMantenimiento.Instance.crearMantenimiento(entMantenimiento);
         }
 
+        public List<entMantenimiento> mantenimientos_disp()
+        {
+            return datMantenimiento.Instance.Mantemintos_disp();
+        }
+
 
     }
 }

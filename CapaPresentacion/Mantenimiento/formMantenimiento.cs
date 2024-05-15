@@ -102,7 +102,8 @@ namespace CapaPresentacion.Mantenimiento
 
         private void btnAsigInterna_Click(object sender, EventArgs e)
         {
-
+            ManteInterno manteInterno = new ManteInterno();
+            manteInterno.ShowDialog();
         }
 
         private void btnAsigExterna_Click(object sender, EventArgs e)

@@ -37,15 +37,19 @@
             panel2 = new Panel();
             label2 = new Label();
             groupBox1 = new GroupBox();
-            comboContratista = new ComboBox();
+            comboTaller = new ComboBox();
             groupBox2 = new GroupBox();
             comboMante = new ComboBox();
             datetimeFechaInicio = new DateTimePicker();
             dateFechaFin = new DateTimePicker();
+            dataGridView1 = new DataGridView();
+            btnAsignar = new Button();
+            btnCancelar = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -70,6 +74,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 43;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // label1
             // 
@@ -122,21 +127,21 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(comboContratista);
+            groupBox1.Controls.Add(comboTaller);
             groupBox1.Location = new Point(293, 137);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(250, 97);
             groupBox1.TabIndex = 39;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Seleccionar Contratista Disponible";
+            groupBox1.Text = "Seleccionar Taller";
             // 
-            // comboContratista
+            // comboTaller
             // 
-            comboContratista.FormattingEnabled = true;
-            comboContratista.Location = new Point(6, 43);
-            comboContratista.Name = "comboContratista";
-            comboContratista.Size = new Size(238, 23);
-            comboContratista.TabIndex = 0;
+            comboTaller.FormattingEnabled = true;
+            comboTaller.Location = new Point(6, 43);
+            comboTaller.Name = "comboTaller";
+            comboTaller.Size = new Size(238, 23);
+            comboTaller.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -170,11 +175,53 @@
             dateFechaFin.Size = new Size(250, 23);
             dateFechaFin.TabIndex = 42;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(28, 308);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(515, 179);
+            dataGridView1.TabIndex = 43;
+            // 
+            // btnAsignar
+            // 
+            btnAsignar.BackColor = Color.FromArgb(36, 32, 40);
+            btnAsignar.Cursor = Cursors.Hand;
+            btnAsignar.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
+            btnAsignar.FlatStyle = FlatStyle.Flat;
+            btnAsignar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAsignar.ForeColor = Color.LightGray;
+            btnAsignar.Location = new Point(102, 271);
+            btnAsignar.Name = "btnAsignar";
+            btnAsignar.Size = new Size(104, 31);
+            btnAsignar.TabIndex = 44;
+            btnAsignar.Text = "Asignar";
+            btnAsignar.UseVisualStyleBackColor = false;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = Color.FromArgb(36, 32, 40);
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCancelar.ForeColor = Color.LightGray;
+            btnCancelar.Location = new Point(371, 271);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(102, 31);
+            btnCancelar.TabIndex = 45;
+            btnCancelar.Text = "Eliminar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            // 
             // ManteInterno
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(575, 525);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnAsignar);
+            Controls.Add(dataGridView1);
             Controls.Add(dateFechaFin);
             Controls.Add(datetimeFechaInicio);
             Controls.Add(groupBox2);
@@ -187,11 +234,13 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManteInterno";
             Text = "ManteInterno";
+            Load += ManteInterno_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -205,11 +254,14 @@
         private Panel panel2;
         private Label label2;
         private GroupBox groupBox1;
-        private ComboBox comboContratista;
+        private ComboBox comboTaller;
         private GroupBox groupBox2;
         private ComboBox comboMante;
         private DateTimePicker datetimeFechaInicio;
         private DateTimePicker dateFechaFin;
         private PictureBox pictureBox2;
+        private DataGridView dataGridView1;
+        private Button btnAsignar;
+        private Button btnCancelar;
     }
 }

@@ -102,5 +102,46 @@ namespace CapaDatos
             }
             return creado;
         }
+
+
+
+        public List<entMantenimiento> Mantemintos_disp()
+        {
+            SqlCommand sqlCommand = null;
+            List<entMantenimiento> lista = new List<entMantenimiento>();
+            try
+            {
+                SqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new SqlCommand("mantenimientos_Disponibles", cn);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                cn.Open();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    entMantenimiento mante = new entMantenimiento();
+                    mante.id = Convert.ToInt32(reader["id_mantenimiento"]);
+                    mante.id_vehiculo = Convert.ToInt32(reader["id_vehiculo"]);
+                    mante.placa_vehiculo = reader["placa"].ToString();
+                    mante.fecha_mantenimiento = Convert.ToDateTime(reader["fecha_mantenimiento"]);
+                    mante.tipo_mantenimiento = reader["tipo_mantenimiento"].ToString();
+                    mante.componente = reader["componente_reparado"].ToString().ToLower();
+                    mante.kilometraje = reader["kilometraje"].ToString().ToLower();
+                    mante.comentario = reader["comentarios"].ToString().ToLower();
+                    mante.costo = Convert.ToSingle(reader["costo"]);
+                    mante.estado = Convert.ToBoolean(reader["estado"]);
+                    lista.Add(mante);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlCommand.Connection.Close();
+            }
+            return lista;
+        }
     }
 }
