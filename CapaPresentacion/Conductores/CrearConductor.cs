@@ -1,6 +1,7 @@
 ﻿using CapaDatos;
 using CapaEntidad;
 using CapaLogica;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -165,21 +167,35 @@ namespace CapaPresentacion.Conductores
             {
                 if (dni.Length == 8)
                 {
-                    //dynamic respuesta = _consultaAPI.get($"https://dniruc.apisperu.com/api/v1/dni/{dni}?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Im5kcnNudmVuZWdhc0BnbWFpbC5jb20ifQ.LO89ABUgdQavZhRqnBTh6K2kLfX3st3cT5o8Evdiqk4");
                     dynamic respuesta = _consultaAPI.get($"https://api.sunat.dev/dni/{dni}?apikey=gfoKM4J0r69OxS0ez8sPuCPsXuafVhTY4rvtdegghVoWEfQcvztRyQUmxuVmjeD9");
-                    //MessageBox.Show($"nombre: {respuesta.nombres} \n apellido: {respuesta.apellidoPaterno} \n {respuesta.apellidoMaterno}");
+
                     if (respuesta != null && respuesta.body != null)
                     {
-                        MessageBox.Show("Informacion validada con exito", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // Accede a 'apePaterno' dentro de 'body'
-                        txtNombre.Text = $"{respuesta.body.preNombres}";
-                        txtApellido.Text = respuesta.body.apePaterno;
-                        txtDireccion.Text = respuesta.body.desDireccion;
-                        string fechaString = respuesta.body.feNacimiento;
-                        DateTime fechaNacimiento = DateTime.ParseExact(fechaString, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-                        dateTimePicker1.Value = fechaNacimiento;
-                        //MessageBox.Show($"response {respuesta.body.feNacimiento}");
-
+                        var resp= respuesta.statusCode;
+                        Console.WriteLine(resp);
+                        if (respuesta.statusCode == 400)
+                        {
+                            string errorMessage = respuesta.body.errors[0].message;
+                            MessageBox.Show(errorMessage, "Error");
+                        }
+                        else if (respuesta.statusCode == 200)
+                        {
+                            MessageBox.Show("Informacion validada con exito", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            txtNombre.Text = $"{respuesta.body.preNombres}";
+                            txtApellido.Text = respuesta.body.apePaterno;
+                            txtDireccion.Text = respuesta.body.desDireccion;
+                            string fechaString = respuesta.body.feNacimiento;
+                            DateTime fechaNacimiento = DateTime.ParseExact(fechaString, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            dateTimePicker1.Value = fechaNacimiento;
+                        }
+                        else if (respuesta.statusCode == 404)
+                        {
+                            MessageBox.Show("Error al traer informacion Dni no valido","Error");
+                        }
+                        else
+                        {
+                            MessageBox.Show("La respuesta de la API no tiene el formato esperado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
@@ -187,9 +203,36 @@ namespace CapaPresentacion.Conductores
                     }
                 }
             }
+            catch (WebException webEx)
+            {
+                if (webEx.Response != null)
+                {
+                    using (var errorResponse = (HttpWebResponse)webEx.Response)
+                    {
+                        if (errorResponse.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            MessageBox.Show("DNI no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                            {
+                                string errorText = reader.ReadToEnd();
+                                dynamic errorData = JsonConvert.DeserializeObject(errorText);
+                                string errorMessage = errorData?.body?.errors[0]?.message ?? "Error desconocido.";
+                                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Error al conectar con la API.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
