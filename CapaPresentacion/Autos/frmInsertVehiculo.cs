@@ -154,19 +154,15 @@ namespace CapaPresentacion.Autos
                     }
                     else if (!Validators.ValidarSoloNumeros(txtKilometraje.Text))
                     {
-                        MessageBox.Show("Por favor, ingrese solo números para el kilometraje.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Por favor, ingrese solo números para el kilometraje O El rango es muy corto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else if (!Validators.ValidarNombreApellido(txtMarca.Text))
                     {
-                        MessageBox.Show("Por favor, ingrese un valor válido para la marca del vehículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Por favor, ingrese un valor válido para la marca del vehículo O El rango es muy corto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else if (!Validators.ValidarNombreApellido(txtModelo.Text))
                     {
-                        MessageBox.Show("Por favor, ingrese un valor válido para el modelo del vehículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else if (!radioDisponible.Checked && !radioMantenimiento.Checked)
-                    {
-                        MessageBox.Show("Por favor, seleccione el estado del vehículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Por favor, ingrese un valor válido para el modelo del vehículo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else if (comboBox1.SelectedItem == null)
                     {

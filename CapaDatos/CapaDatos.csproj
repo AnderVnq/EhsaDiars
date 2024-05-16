@@ -83,7 +83,11 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="DatAuto.cs" />
     <Compile Include="DatConductor.cs" />
+    <Compile Include="DatContratista.cs" />
     <Compile Include="datMantenimiento.cs" />
+    <Compile Include="DatOrdenMant.cs" />
+    <Compile Include="DatTaller.cs" />
+    <Compile Include="DatTecnico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -45,11 +45,14 @@
             dataGridView1 = new DataGridView();
             btnAsignar = new Button();
             btnCancelar = new Button();
+            Tecnicos = new GroupBox();
+            treeView1 = new TreeView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            Tecnicos.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -60,7 +63,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(575, 27);
+            panel1.Size = new Size(747, 27);
             panel1.TabIndex = 0;
             panel1.MouseDown += panel1_MouseDown;
             // 
@@ -68,7 +71,7 @@
             // 
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(534, -2);
+            pictureBox2.Location = new Point(706, -2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(41, 29);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -80,7 +83,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Sans Serif Collection", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(174, 0);
+            label1.Location = new Point(293, 0);
             label1.Name = "label1";
             label1.Size = new Size(220, 29);
             label1.TabIndex = 0;
@@ -178,10 +181,10 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(28, 308);
+            dataGridView1.Location = new Point(276, 265);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(515, 179);
+            dataGridView1.Size = new Size(459, 248);
             dataGridView1.TabIndex = 43;
             // 
             // btnAsignar
@@ -192,12 +195,13 @@
             btnAsignar.FlatStyle = FlatStyle.Flat;
             btnAsignar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnAsignar.ForeColor = Color.LightGray;
-            btnAsignar.Location = new Point(102, 271);
+            btnAsignar.Location = new Point(611, 83);
             btnAsignar.Name = "btnAsignar";
             btnAsignar.Size = new Size(104, 31);
             btnAsignar.TabIndex = 44;
             btnAsignar.Text = "Asignar";
             btnAsignar.UseVisualStyleBackColor = false;
+            btnAsignar.Click += btnAsignar_Click;
             // 
             // btnCancelar
             // 
@@ -207,18 +211,36 @@
             btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.LightGray;
-            btnCancelar.Location = new Point(371, 271);
+            btnCancelar.Location = new Point(611, 174);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(102, 31);
             btnCancelar.TabIndex = 45;
             btnCancelar.Text = "Eliminar";
             btnCancelar.UseVisualStyleBackColor = false;
             // 
+            // Tecnicos
+            // 
+            Tecnicos.Controls.Add(treeView1);
+            Tecnicos.Location = new Point(32, 265);
+            Tecnicos.Name = "Tecnicos";
+            Tecnicos.Size = new Size(238, 248);
+            Tecnicos.TabIndex = 46;
+            Tecnicos.TabStop = false;
+            Tecnicos.Text = "Tecnicos";
+            // 
+            // treeView1
+            // 
+            treeView1.Location = new Point(2, 22);
+            treeView1.Name = "treeView1";
+            treeView1.Size = new Size(230, 200);
+            treeView1.TabIndex = 0;
+            // 
             // ManteInterno
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(575, 525);
+            ClientSize = new Size(747, 525);
+            Controls.Add(Tecnicos);
             Controls.Add(btnCancelar);
             Controls.Add(btnAsignar);
             Controls.Add(dataGridView1);
@@ -241,6 +263,7 @@
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Tecnicos.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -263,5 +286,7 @@
         private DataGridView dataGridView1;
         private Button btnAsignar;
         private Button btnCancelar;
+        private GroupBox Tecnicos;
+        private TreeView treeView1;
     }
 }

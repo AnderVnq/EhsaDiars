@@ -12,20 +12,36 @@ namespace CapaLogica
 
         public static bool ValidarDNI(string dni)
         {
+            if (dni.Length < 4)
+            {
+                return false;
+            }
             return Regex.IsMatch(dni, @"^\d{8}$");
         }
 
         public static bool ValidarNombreApellido(string texto)
         {
+            if (texto.Length < 4)
+            {
+                return false;
+            }
             return Regex.IsMatch(texto, @"^[a-zA-Z]+$");
         }
 
         public static bool ValidarTelefono(string telefono)
         {
+            if (telefono.Length < 4)
+            {
+                return false;
+            }
             return Regex.IsMatch(telefono, @"^\d{9}$");
         }
         public static bool ValidarTextoSinRepetir(string texto)
         {
+            if (texto.Length < 4)
+            {
+                return false;
+            }
             char prevChar = '\0';
             foreach (char c in texto)
             {
@@ -38,6 +54,10 @@ namespace CapaLogica
 
         public static bool ValidarSoloNumeros(string texto)
         {
+            if (texto.Length < 4)
+            {
+                return false;
+            }
             Regex regex = new Regex("^[0-9]+$");
 
             return regex.IsMatch(texto);

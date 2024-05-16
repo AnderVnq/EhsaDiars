@@ -52,11 +52,62 @@ namespace CapaPresentacion.Mantenimiento
             {
                 comboMante.Items.Add($"ID: {m.id}; Vehiculo: {m.placa_vehiculo}");
             }
+
+            PintarTreeView();
+
+
+
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnAsignar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void PintarTreeView()
+        {
+            // Obtener la lista de técnicos
+            List<Tecnico> lista_tec = LogTecnico.Instancia.list_tecnicos();
+
+            // Limpiar el TreeView antes de llenarlo
+            treeView1.Nodes.Clear();
+
+            // Recorrer la lista de técnicos
+            foreach (Tecnico tec in lista_tec)
+            {
+                // Intentar encontrar el nodo del taller existente
+                TreeNode tallerNode = null;
+                foreach (TreeNode node in treeView1.Nodes)
+                {
+                    if (node.Text == tec.nombre_taller)
+                    {
+                        tallerNode = node;
+                        break;
+                    }
+                }
+
+                // Si no se encontró el nodo del taller, crearlo
+                if (tallerNode == null)
+                {
+                    tallerNode = new TreeNode(tec.nombre_taller);
+                    treeView1.Nodes.Add(tallerNode);
+                }
+
+                // Crear nodos separados para cada detalle del técnico
+                TreeNode tecnicoNode = new TreeNode(tec.nombre);
+                tecnicoNode.Nodes.Add(new TreeNode("Especialidad: " + tec.especialidad));
+                tecnicoNode.Nodes.Add(new TreeNode("Teléfono: " + tec.telefono));
+
+                // Agregar el nodo del técnico como hijo del nodo del taller
+                tallerNode.Nodes.Add(tecnicoNode);
+            }
         }
     }
 }

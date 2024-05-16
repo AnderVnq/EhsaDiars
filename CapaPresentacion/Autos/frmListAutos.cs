@@ -45,6 +45,7 @@ namespace CapaPresentacion.Autos
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmInsertVehiculo frmInsertVehiculo = new frmInsertVehiculo();
+            frmInsertVehiculo.Dato1 = null;
             frmInsertVehiculo.ShowDialog();
         }
 
