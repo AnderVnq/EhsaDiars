@@ -30,51 +30,65 @@ namespace CapaPresentacion.Mantenimiento
             string seleccion_vehiculo = null;
             string seleccion_tipo = null;
             string id_vehiculo = null;
-            if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
+            if (Validators.ValidarSoloNumeros(txtcosto.Text))
             {
-                // Obtener la opción seleccionada y almacenarla en la variable
-                seleccion_vehiculo = comboBox1.SelectedItem.ToString();
-                seleccion_tipo = comboBox2.SelectedItem.ToString();
-
-                string patron = @"ID:\s*(\d+)";
-
-                // Buscar coincidencias utilizando la expresión regular
-                Match match = Regex.Match(comboBox1.SelectedItem.ToString(), patron);
-
-                // Verificar si se encontró una coincidencia
-                if (match.Success)
-                {
-                    // Extraer el valor del grupo capturado (el ID)
-                    id_vehiculo = match.Groups[1].Value;
-                }
-                entMantenimiento mantenimiento = new entMantenimiento();
-                mantenimiento.id_vehiculo = Convert.ToInt32(id_vehiculo);
-                mantenimiento.tipo_mantenimiento = seleccion_tipo;
-                mantenimiento.fecha_mantenimiento = dateTimePicker1.Value;
-                mantenimiento.costo = Convert.ToSingle(txtcosto.Text);
-                mantenimiento.kilometraje = txtKilometraje.Text;
-                mantenimiento.componente = txtcomponente.Text;
-                mantenimiento.comentario = txtcomentario.Text;
-
-
-                bool insert = LogMantenimiento.Instancia.crearMantenimiento(mantenimiento);
-                if (insert)
-                {
-                    MessageBox.Show("Mantenimiento registrado Correctamente");
-                }
-                else
-                {
-                    MessageBox.Show("error al registrar mantenimiento");
-                }
-
-                // Realizar acciones con la selección almacenada
+                MessageBox.Show("Ingrese un Costo Valido");
+            }
+            else if (Validators.ValidarSoloNumeros(txtKilometraje.Text))
+            {
+                MessageBox.Show("Ingrese un kilometraje Valido");
+            }
+            else if (Validators.ValidarNombreApellido(txtcomponente.Text))
+            {
+                MessageBox.Show("Error Ingrese un componente valido");
             }
             else
             {
-                // En caso de que no se haya seleccionado ninguna opción, muestra un mensaje de advertencia
-                MessageBox.Show("Por favor, seleccione una opción", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
+                {
+                    // Obtener la opción seleccionada y almacenarla en la variable
+                    seleccion_vehiculo = comboBox1.SelectedItem.ToString();
+                    seleccion_tipo = comboBox2.SelectedItem.ToString();
 
+                    string patron = @"ID:\s*(\d+)";
+
+                    // Buscar coincidencias utilizando la expresión regular
+                    Match match = Regex.Match(comboBox1.SelectedItem.ToString(), patron);
+
+                    // Verificar si se encontró una coincidencia
+                    if (match.Success)
+                    {
+                        // Extraer el valor del grupo capturado (el ID)
+                        id_vehiculo = match.Groups[1].Value;
+                    }
+                    entMantenimiento mantenimiento = new entMantenimiento();
+                    mantenimiento.id_vehiculo = Convert.ToInt32(id_vehiculo);
+                    mantenimiento.tipo_mantenimiento = seleccion_tipo;
+                    mantenimiento.fecha_mantenimiento = dateTimePicker1.Value;
+                    mantenimiento.costo = Convert.ToSingle(txtcosto.Text);
+                    mantenimiento.kilometraje = txtKilometraje.Text;
+                    mantenimiento.componente = txtcomponente.Text;
+                    mantenimiento.comentario = txtcomentario.Text;
+
+
+                    bool insert = LogMantenimiento.Instancia.crearMantenimiento(mantenimiento);
+                    if (insert)
+                    {
+                        MessageBox.Show("Mantenimiento registrado Correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("error al registrar mantenimiento");
+                    }
+
+                    // Realizar acciones con la selección almacenada
+                }
+                else
+                {
+                    // En caso de que no se haya seleccionado ninguna opción, muestra un mensaje de advertencia
+                    MessageBox.Show("Por favor, seleccione una opción", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         public void ActualizarGridView()
@@ -108,7 +122,8 @@ namespace CapaPresentacion.Mantenimiento
 
         private void btnAsigExterna_Click(object sender, EventArgs e)
         {
-
+            ManteExterno manteExterno = new ManteExterno();
+            manteExterno.ShowDialog();
         }
     }
 }

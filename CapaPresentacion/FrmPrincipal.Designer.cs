@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             panel1 = new Panel();
-            btnCerrarSesion = new Button();
             panel7 = new Panel();
             panel6 = new Panel();
             panel5 = new Panel();
@@ -41,6 +40,7 @@
             btnAuto = new Button();
             btnConductor = new Button();
             pictureBox1 = new PictureBox();
+            btnCerrarSesion = new Button();
             panel2 = new Panel();
             panelContenedor = new Panel();
             panel9 = new Panel();
@@ -57,6 +57,7 @@
             pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel2.SuspendLayout();
             panelContenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -64,7 +65,6 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(36, 32, 40);
-            panel1.Controls.Add(btnCerrarSesion);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel5);
@@ -80,21 +80,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(240, 611);
             panel1.TabIndex = 0;
-            // 
-            // btnCerrarSesion
-            // 
-            btnCerrarSesion.Cursor = Cursors.Hand;
-            btnCerrarSesion.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
-            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
-            btnCerrarSesion.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCerrarSesion.ForeColor = Color.LightGray;
-            btnCerrarSesion.Location = new Point(33, 506);
-            btnCerrarSesion.Name = "btnCerrarSesion";
-            btnCerrarSesion.Size = new Size(153, 33);
-            btnCerrarSesion.TabIndex = 8;
-            btnCerrarSesion.Text = "Cerrar Sesion";
-            btnCerrarSesion.UseVisualStyleBackColor = true;
-            btnCerrarSesion.Click += btnCerrarSesion_Click;
             // 
             // panel7
             // 
@@ -212,9 +197,26 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
+            // btnCerrarSesion
+            // 
+            btnCerrarSesion.Cursor = Cursors.Hand;
+            btnCerrarSesion.FlatAppearance.BorderColor = Color.FromArgb(247, 115, 5);
+            btnCerrarSesion.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
+            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
+            btnCerrarSesion.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCerrarSesion.ForeColor = Color.Black;
+            btnCerrarSesion.Location = new Point(888, 11);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(153, 33);
+            btnCerrarSesion.TabIndex = 8;
+            btnCerrarSesion.Text = "Cerrar Sesion";
+            btnCerrarSesion.UseVisualStyleBackColor = true;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
+            // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(247, 115, 5);
+            panel2.Controls.Add(btnCerrarSesion);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(240, 0);
             panel2.Name = "panel2";
@@ -261,6 +263,7 @@
             // 
             txtContraseña.Location = new Point(354, 357);
             txtContraseña.Name = "txtContraseña";
+            txtContraseña.PasswordChar = '*';
             txtContraseña.PlaceholderText = "**********";
             txtContraseña.Size = new Size(336, 23);
             txtContraseña.TabIndex = 20;
@@ -378,6 +381,7 @@
             Load += FrmPrincipal_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel2.ResumeLayout(false);
             panelContenedor.ResumeLayout(false);
             panelContenedor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

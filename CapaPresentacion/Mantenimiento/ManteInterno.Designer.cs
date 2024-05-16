@@ -63,7 +63,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(747, 27);
+            panel1.Size = new Size(747, 34);
             panel1.TabIndex = 0;
             panel1.MouseDown += panel1_MouseDown;
             // 
@@ -71,7 +71,7 @@
             // 
             pictureBox2.Cursor = Cursors.Hand;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(706, -2);
+            pictureBox2.Location = new Point(706, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(41, 29);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -83,7 +83,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Sans Serif Collection", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(293, 0);
+            label1.Location = new Point(276, 2);
             label1.Name = "label1";
             label1.Size = new Size(220, 29);
             label1.TabIndex = 0;
