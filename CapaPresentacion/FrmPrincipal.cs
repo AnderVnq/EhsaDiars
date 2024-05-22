@@ -67,7 +67,10 @@ namespace CapaPresentacion
             btnConductor.Enabled = false;
             btnMante.Enabled = false;
             btnPagos.Enabled = false;
-            btnCerrarSesion.Visible = false;
+            //btnCerrarSesion.Visible = false;
+            picCerrarSession.Visible = false;
+            btnContratista.Enabled = false;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,7 +100,8 @@ namespace CapaPresentacion
                             btnConductor.Enabled = true;
                             btnMante.Enabled = true;
                             btnPagos.Enabled = true;
-                            btnCerrarSesion.Visible = true;
+                            //btnCerrarSesion.Visible = true;
+                            picCerrarSession.Visible = true;
                         }
                         while (this.panelContenedor.Controls.Count > 0)
                         {
@@ -149,7 +153,7 @@ namespace CapaPresentacion
             btnConductor.Enabled = false;
             btnMante.Enabled = false;
             btnPagos.Enabled = false;
-            btnCerrarSesion.Visible = false;
+            //btnCerrarSesion.Visible = false;
             txtContraseña.Text = "";
             txtusuario.Text = "";
         }
@@ -191,6 +195,39 @@ namespace CapaPresentacion
         private void btnMante_Click(object sender, EventArgs e)
         {
             abrir_form_hija(formMantenimiento);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            bool cerrado = LogAuthUser.Instancia.logout(usuario);
+            string a = usuario;
+            if (cerrado)
+            {
+                MessageBox.Show("Sesion Cerrada con Exito", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("error");
+            }
+            if (this.panelContenedor.Controls.Count > 0)
+            {
+                this.panelContenedor.Controls.RemoveAt(0);
+            }
+
+            foreach (Control item in controles)
+            {
+                this.panelContenedor.Controls.Add(item);
+
+            }
+
+            btnAuto.Enabled = false;
+            btnConductor.Enabled = false;
+            btnMante.Enabled = false;
+            btnPagos.Enabled = false;
+            //btnCerrarSesion.Visible = false;
+            picCerrarSession.Visible = false;
+            txtContraseña.Text = "";
+            txtusuario.Text = "";
         }
     }
 }

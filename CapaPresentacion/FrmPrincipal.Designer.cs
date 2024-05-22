@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             panel1 = new Panel();
+            panel10 = new Panel();
+            btnContratista = new Button();
             panel7 = new Panel();
             panel6 = new Panel();
             panel5 = new Panel();
@@ -40,8 +42,8 @@
             btnAuto = new Button();
             btnConductor = new Button();
             pictureBox1 = new PictureBox();
-            btnCerrarSesion = new Button();
             panel2 = new Panel();
+            picCerrarSession = new PictureBox();
             panelContenedor = new Panel();
             panel9 = new Panel();
             txtusuario = new TextBox();
@@ -58,6 +60,7 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picCerrarSession).BeginInit();
             panelContenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -65,6 +68,8 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(36, 32, 40);
+            panel1.Controls.Add(panel10);
+            panel1.Controls.Add(btnContratista);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
             panel1.Controls.Add(panel5);
@@ -81,10 +86,32 @@
             panel1.Size = new Size(240, 611);
             panel1.TabIndex = 0;
             // 
+            // panel10
+            // 
+            panel10.BackColor = Color.FromArgb(247, 115, 5);
+            panel10.Location = new Point(1, 378);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(5, 43);
+            panel10.TabIndex = 8;
+            // 
+            // btnContratista
+            // 
+            btnContratista.Cursor = Cursors.Hand;
+            btnContratista.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
+            btnContratista.FlatStyle = FlatStyle.Flat;
+            btnContratista.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnContratista.ForeColor = Color.LightGray;
+            btnContratista.Location = new Point(4, 378);
+            btnContratista.Name = "btnContratista";
+            btnContratista.Size = new Size(210, 45);
+            btnContratista.TabIndex = 8;
+            btnContratista.Text = "Contratistas";
+            btnContratista.UseVisualStyleBackColor = true;
+            // 
             // panel7
             // 
             panel7.BackColor = Color.FromArgb(247, 115, 5);
-            panel7.Location = new Point(0, 354);
+            panel7.Location = new Point(0, 316);
             panel7.Name = "panel7";
             panel7.Size = new Size(5, 43);
             panel7.TabIndex = 7;
@@ -92,7 +119,7 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(247, 115, 5);
-            panel6.Location = new Point(0, 283);
+            panel6.Location = new Point(0, 249);
             panel6.Name = "panel6";
             panel6.Size = new Size(5, 43);
             panel6.TabIndex = 7;
@@ -100,7 +127,7 @@
             // panel5
             // 
             panel5.BackColor = Color.FromArgb(247, 115, 5);
-            panel5.Location = new Point(0, 215);
+            panel5.Location = new Point(0, 186);
             panel5.Name = "panel5";
             panel5.Size = new Size(5, 43);
             panel5.TabIndex = 7;
@@ -108,7 +135,7 @@
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(247, 115, 5);
-            panel4.Location = new Point(0, 146);
+            panel4.Location = new Point(0, 125);
             panel4.Name = "panel4";
             panel4.Size = new Size(5, 43);
             panel4.TabIndex = 6;
@@ -135,7 +162,7 @@
             btnPagos.FlatStyle = FlatStyle.Flat;
             btnPagos.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnPagos.ForeColor = Color.LightGray;
-            btnPagos.Location = new Point(3, 353);
+            btnPagos.Location = new Point(3, 315);
             btnPagos.Name = "btnPagos";
             btnPagos.Size = new Size(210, 45);
             btnPagos.TabIndex = 4;
@@ -149,7 +176,7 @@
             btnMante.FlatStyle = FlatStyle.Flat;
             btnMante.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnMante.ForeColor = Color.LightGray;
-            btnMante.Location = new Point(3, 282);
+            btnMante.Location = new Point(3, 248);
             btnMante.Name = "btnMante";
             btnMante.Size = new Size(210, 45);
             btnMante.TabIndex = 3;
@@ -164,7 +191,7 @@
             btnAuto.FlatStyle = FlatStyle.Flat;
             btnAuto.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnAuto.ForeColor = Color.LightGray;
-            btnAuto.Location = new Point(3, 214);
+            btnAuto.Location = new Point(3, 185);
             btnAuto.Name = "btnAuto";
             btnAuto.Size = new Size(210, 45);
             btnAuto.TabIndex = 2;
@@ -179,7 +206,7 @@
             btnConductor.FlatStyle = FlatStyle.Flat;
             btnConductor.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             btnConductor.ForeColor = Color.LightGray;
-            btnConductor.Location = new Point(3, 145);
+            btnConductor.Location = new Point(3, 124);
             btnConductor.Name = "btnConductor";
             btnConductor.Size = new Size(210, 45);
             btnConductor.TabIndex = 1;
@@ -197,31 +224,27 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // btnCerrarSesion
-            // 
-            btnCerrarSesion.Cursor = Cursors.Hand;
-            btnCerrarSesion.FlatAppearance.BorderColor = Color.FromArgb(247, 115, 5);
-            btnCerrarSesion.FlatAppearance.MouseOverBackColor = Color.FromArgb(247, 115, 5);
-            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
-            btnCerrarSesion.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCerrarSesion.ForeColor = Color.Black;
-            btnCerrarSesion.Location = new Point(888, 11);
-            btnCerrarSesion.Name = "btnCerrarSesion";
-            btnCerrarSesion.Size = new Size(153, 33);
-            btnCerrarSesion.TabIndex = 8;
-            btnCerrarSesion.Text = "Cerrar Sesion";
-            btnCerrarSesion.UseVisualStyleBackColor = true;
-            btnCerrarSesion.Click += btnCerrarSesion_Click;
-            // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(247, 115, 5);
-            panel2.Controls.Add(btnCerrarSesion);
+            panel2.Controls.Add(picCerrarSession);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(240, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(1044, 50);
             panel2.TabIndex = 1;
+            // 
+            // picCerrarSession
+            // 
+            picCerrarSession.Cursor = Cursors.Hand;
+            picCerrarSession.Image = (Image)resources.GetObject("picCerrarSession.Image");
+            picCerrarSession.Location = new Point(996, 12);
+            picCerrarSession.Name = "picCerrarSession";
+            picCerrarSession.Size = new Size(36, 29);
+            picCerrarSession.SizeMode = PictureBoxSizeMode.Zoom;
+            picCerrarSession.TabIndex = 9;
+            picCerrarSession.TabStop = false;
+            picCerrarSession.Click += pictureBox3_Click;
             // 
             // panelContenedor
             // 
@@ -382,6 +405,7 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picCerrarSession).EndInit();
             panelContenedor.ResumeLayout(false);
             panelContenedor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -414,7 +438,9 @@
         private Label label2;
         private Label label1;
         private PictureBox pictureBox2;
-        private Button btnCerrarSesion;
         private Panel panel9;
+        private Panel panel10;
+        private Button btnContratista;
+        private PictureBox picCerrarSession;
     }
 }

@@ -28,6 +28,7 @@ namespace CapaPresentacion.Mantenimiento
         public ManteInterno()
         {
             InitializeComponent();
+            dataGridView1.DataSource = LogTaller.Instancia.listar_mante_interno();
             comboMante.DropDownStyle = ComboBoxStyle.DropDownList;
             comboTaller.DropDownStyle = ComboBoxStyle.DropDownList;
         }
@@ -53,9 +54,17 @@ namespace CapaPresentacion.Mantenimiento
                 comboMante.Items.Add($"ID: {m.id}; Vehiculo: {m.placa_vehiculo}");
             }
 
+
+
+            List<Taller> lista_taller = LogTaller.Instancia.listar_taller();
+            foreach(Taller t in lista_taller)
+            {
+                comboTaller.Items.Add($"ID: {t.id} - Nombre:{t.nombre}");
+            }
+
+
+            
             PintarTreeView();
-
-
 
         }
 
@@ -69,20 +78,21 @@ namespace CapaPresentacion.Mantenimiento
 
         }
 
+        public void ActualizarGridView()
+        {
+            dataGridView1.Refresh();
+            dataGridView1.DataSource =LogTaller.Instancia.listar_mante_interno();
 
+        }
 
         private void PintarTreeView()
         {
-            // Obtener la lista de técnicos
             List<Tecnico> lista_tec = LogTecnico.Instancia.list_tecnicos();
 
-            // Limpiar el TreeView antes de llenarlo
             treeView1.Nodes.Clear();
 
-            // Recorrer la lista de técnicos
             foreach (Tecnico tec in lista_tec)
             {
-                // Intentar encontrar el nodo del taller existente
                 TreeNode tallerNode = null;
                 foreach (TreeNode node in treeView1.Nodes)
                 {
