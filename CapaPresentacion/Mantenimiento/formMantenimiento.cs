@@ -20,7 +20,7 @@ namespace CapaPresentacion.Mantenimiento
             InitializeComponent();
 
             dataGridView1.DataSource = LogMantenimiento.Instancia.lista_mantenimientos();
-            comboBox1.DropDownStyle=ComboBoxStyle.DropDownList;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
 
         }
@@ -30,15 +30,15 @@ namespace CapaPresentacion.Mantenimiento
             string seleccion_vehiculo = null;
             string seleccion_tipo = null;
             string id_vehiculo = null;
-            if (Validators.ValidarSoloNumeros(txtcosto.Text))
+            if (!Validators.ValidarSoloNumeros(txtcosto.Text))
             {
                 MessageBox.Show("Ingrese un Costo Valido");
             }
-            else if (Validators.ValidarSoloNumeros(txtKilometraje.Text))
+            else if (!Validators.ValidarSoloNumeros(txtKilometraje.Text))
             {
                 MessageBox.Show("Ingrese un kilometraje Valido");
             }
-            else if (Validators.ValidarNombreApellido(txtcomponente.Text))
+            else if (!Validators.ValidarNombreApellido(txtcomponente.Text))
             {
                 MessageBox.Show("Error Ingrese un componente valido");
             }
@@ -111,7 +111,7 @@ namespace CapaPresentacion.Mantenimiento
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             this.ActualizarGridView();
-            
+
         }
 
         private void btnAsigInterna_Click(object sender, EventArgs e)
@@ -124,6 +124,11 @@ namespace CapaPresentacion.Mantenimiento
         {
             ManteExterno manteExterno = new ManteExterno();
             manteExterno.ShowDialog();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

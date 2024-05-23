@@ -81,6 +81,7 @@
             btnAsignar.TabIndex = 57;
             btnAsignar.Text = "Asignar";
             btnAsignar.UseVisualStyleBackColor = false;
+            btnAsignar.Click += btnAsignar_Click;
             // 
             // dataGridView1
             // 
@@ -234,6 +235,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManteExterno";
             Text = "ManteExterno";
+            Load += ManteExterno_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
