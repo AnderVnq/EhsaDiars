@@ -109,34 +109,59 @@ namespace CapaPresentacion.Conductores
             }
             else
             {
-                Conductor conductor = new Conductor();
 
-                conductor.nombre = txtNombre.Text;
-                conductor.apellido = txtApellido.Text;
-                conductor.licencia = txtNroLicencia.Text;
-                conductor.tipo_licencia = txtTipoLicencia.Text;
-                conductor.telefono = txtTelefono.Text;
-                conductor.direccion = txtDireccion.Text;
-                conductor.dni = txtDni.Text;
-                conductor.fecha_contratacion = dateTimePicker1.Value;
 
-                DialogResult resultado = MessageBox.Show("Confirmar Registro Conductor", "Confirmar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (resultado == DialogResult.OK)
+                if (!Validators.ValidarDNI(txtDni.Text))
                 {
-                    bool creado = LogConductor.Instancia.insertar_conductor(conductor);
-                    if (creado)
-                    {
-                        MessageBox.Show("Conductor Creado Con Exito");
+                    MessageBox.Show("El DNI ingresado no es válido. Por favor, ingrese un DNI válido.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (!Validators.ValidarNombreApellido(txtApellido.Text))
+                {
+                    MessageBox.Show("El apellido ingresado no es válido. Por favor, ingrese un apellido válido.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (!Validators.ValidarNombreApellido(txtNombre.Text))
+                {
+                    MessageBox.Show("El nombre ingresado no es válido. Por favor, ingrese un nombre válido.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (!Validators.ValidarSoloNumeros(txtNroLicencia.Text))
+                {
+                    MessageBox.Show("El número de licencia ingresado no es válido. Por favor, ingrese solo números.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (!Validators.ValidarTelefono(txtTelefono.Text))
+                {
+                    MessageBox.Show("El número de teléfono ingresado no es válido. Por favor, ingrese un número de teléfono válido.", "Error de Validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
 
-                        listConductores.ActualizarGridView();
+                    Conductor conductor = new Conductor();
 
-                    }
-                    else
+                    conductor.nombre = txtNombre.Text;
+                    conductor.apellido = txtApellido.Text;
+                    conductor.licencia = txtNroLicencia.Text;
+                    conductor.tipo_licencia = txtTipoLicencia.Text;
+                    conductor.telefono = txtTelefono.Text;
+                    conductor.direccion = txtDireccion.Text;
+                    conductor.dni = txtDni.Text;
+                    conductor.fecha_contratacion = dateTimePicker1.Value;
+
+                    DialogResult resultado = MessageBox.Show("Confirmar Registro Conductor", "Confirmar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (resultado == DialogResult.OK)
                     {
-                        MessageBox.Show("Error al registrar conductor");
+                        bool creado = LogConductor.Instancia.insertar_conductor(conductor);
+                        if (creado)
+                        {
+                            MessageBox.Show("Conductor Creado Con Exito");
+
+                            listConductores.ActualizarGridView();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error al registrar conductor");
+                        }
                     }
                 }
-
 
             }
         }
