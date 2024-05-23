@@ -64,6 +64,15 @@ namespace CapaLogica
         }
 
 
+        public static bool ValidarTexto(string texto)
+        {
+
+            Regex regex = new Regex("^[a-zA-Z ]+$");
+
+            // Validar la cadena
+            return regex.IsMatch(texto);
+        }
+
 
 
         public static bool ValidarRepeticion(string texto, int maxRepetitions)

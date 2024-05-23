@@ -83,6 +83,7 @@
     <Compile Include="LogAuthUser.cs" />
     <Compile Include="LogAutos.cs" />
     <Compile Include="LogConductor.cs" />
+    <Compile Include="LogContratista.cs" />
     <Compile Include="LogMantenimiento.cs" />
     <Compile Include="LogTaller.cs" />
     <Compile Include="LogTecnico.cs" />
