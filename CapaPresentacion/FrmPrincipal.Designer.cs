@@ -107,6 +107,7 @@
             btnContratista.TabIndex = 8;
             btnContratista.Text = "Contratistas";
             btnContratista.UseVisualStyleBackColor = true;
+            btnContratista.Click += btnContratista_Click;
             // 
             // panel7
             // 
@@ -168,6 +169,7 @@
             btnPagos.TabIndex = 4;
             btnPagos.Text = "Pagos";
             btnPagos.UseVisualStyleBackColor = true;
+            btnPagos.Click += btnPagos_Click;
             // 
             // btnMante
             // 

@@ -1,6 +1,7 @@
 ﻿using CapaLogica;
 using CapaPresentacion.Autos;
 using CapaPresentacion.Conductores;
+using CapaPresentacion.Contratista;
 using CapaPresentacion.Mantenimiento;
 using CapaPresentacion.Usuarios;
 using System;
@@ -27,6 +28,7 @@ namespace CapaPresentacion
         register formRegister = new register();
         List<Control> controles = new List<Control>();
         formMantenimiento formMantenimiento = new formMantenimiento();
+        formContratistas FormContratista = new();
         string usuario = null;
         string password = null;
         private void abrir_form_hija(object frmHija)
@@ -102,6 +104,7 @@ namespace CapaPresentacion
                             btnPagos.Enabled = true;
                             //btnCerrarSesion.Visible = true;
                             picCerrarSession.Visible = true;
+                            btnContratista.Enabled = true;
                         }
                         while (this.panelContenedor.Controls.Count > 0)
                         {
@@ -224,10 +227,21 @@ namespace CapaPresentacion
             btnConductor.Enabled = false;
             btnMante.Enabled = false;
             btnPagos.Enabled = false;
+            btnContratista.Enabled = false;
             //btnCerrarSesion.Visible = false;
             picCerrarSession.Visible = false;
             txtContraseña.Text = "";
             txtusuario.Text = "";
+        }
+
+        private void btnPagos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnContratista_Click(object sender, EventArgs e)
+        {
+            abrir_form_hija(FormContratista);
         }
     }
 }
