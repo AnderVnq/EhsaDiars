@@ -81,7 +81,7 @@
   <ItemGroup>
     <Compile Include="Automovil.cs" />
     <Compile Include="Conductor.cs" />
-    <Compile Include="Contratista.cs" />
+    <Compile Include="Contratistas.cs" />
     <Compile Include="entMantenimiento.cs" />
     <Compile Include="OrdenMantenimiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
