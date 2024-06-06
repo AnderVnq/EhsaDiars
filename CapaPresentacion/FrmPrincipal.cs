@@ -3,6 +3,7 @@ using CapaPresentacion.Autos;
 using CapaPresentacion.Conductores;
 using CapaPresentacion.Contratista;
 using CapaPresentacion.Mantenimiento;
+using CapaPresentacion.Pagos;
 using CapaPresentacion.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,7 @@ namespace CapaPresentacion
         List<Control> controles = new List<Control>();
         formMantenimiento formMantenimiento = new formMantenimiento();
         formContratistas FormContratista = new();
+        FormPagos formPagos = new FormPagos();
         string usuario = null;
         string password = null;
         private void abrir_form_hija(object frmHija)
@@ -236,7 +238,7 @@ namespace CapaPresentacion
 
         private void btnPagos_Click(object sender, EventArgs e)
         {
-
+            abrir_form_hija(formPagos);
         }
 
         private void btnContratista_Click(object sender, EventArgs e)
