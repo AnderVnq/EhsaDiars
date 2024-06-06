@@ -16,10 +16,20 @@ namespace CapaPresentacion.Autos
     public partial class frmListAutos : Form
     {
 
-
+        private BindingSource bindingSource;
         public frmListAutos()
         {
             InitializeComponent();
+            bindingSource = new BindingSource();
+
+            // Asigna el origen de datos al BindingSource
+            bindingSource.DataSource = LogAutos.Instancia.listar_autos();
+
+            // Asigna el BindingSource al DataGridView
+            dataGridView1.DataSource = bindingSource;
+
+            // Suscribe al evento TextChanged del TextBox para filtrar en tiempo real
+            txtfiltrar.TextChanged += txtfiltrar_TextChanged;
         }
 
         private void frmListAutos_Load(object sender, EventArgs e)
@@ -27,6 +37,7 @@ namespace CapaPresentacion.Autos
             dataGridView1.DataSource = LogAutos.Instancia.listar_autos();
             lblCountAutos.Text = dataGridView1.RowCount.ToString();
             listar_conductores();
+            
         }
 
 
@@ -94,6 +105,20 @@ namespace CapaPresentacion.Autos
         {
             dataGridView1.DataSource = LogAutos.Instancia.listar_autos();
             lblCountAutos.Text = dataGridView1.RowCount.ToString();
+        }
+
+        private void txtfiltrar_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = txtfiltrar.Text;
+
+            // Filtra la lista subyacente basándose en el texto del TextBox
+            var autosFiltrados = LogAutos.Instancia.listar_autos()
+                                    .Where(auto => auto.placa.Contains(filtro) || auto.marca.Contains(filtro))
+                                    .ToList();
+
+            // Asigna la lista filtrada como origen de datos del BindingSource
+            bindingSource.DataSource = autosFiltrados;
+            dataGridView1.Refresh();
         }
     }
 }

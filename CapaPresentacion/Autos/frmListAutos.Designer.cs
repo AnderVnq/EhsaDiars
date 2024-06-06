@@ -35,7 +35,7 @@
             lblCountAutos = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
+            txtfiltrar = new TextBox();
             label1 = new Label();
             Editar = new Button();
             btnEliminar = new Button();
@@ -110,13 +110,14 @@
             dataGridView1.Size = new Size(838, 414);
             dataGridView1.TabIndex = 16;
             // 
-            // textBox1
+            // txtfiltrar
             // 
-            textBox1.Location = new Point(37, 82);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Bucar Por Placa...";
-            textBox1.Size = new Size(328, 23);
-            textBox1.TabIndex = 15;
+            txtfiltrar.Location = new Point(37, 82);
+            txtfiltrar.Name = "txtfiltrar";
+            txtfiltrar.PlaceholderText = "Bucar Por Placa...";
+            txtfiltrar.Size = new Size(328, 23);
+            txtfiltrar.TabIndex = 15;
+            txtfiltrar.TextChanged += txtfiltrar_TextChanged;
             // 
             // label1
             // 
@@ -201,7 +202,7 @@
             Controls.Add(lblCountAutos);
             Controls.Add(label2);
             Controls.Add(dataGridView1);
-            Controls.Add(textBox1);
+            Controls.Add(txtfiltrar);
             Controls.Add(label1);
             Controls.Add(Editar);
             Controls.Add(btnEliminar);
@@ -221,7 +222,7 @@
         private Label lblCountAutos;
         private Label label2;
         private DataGridView dataGridView1;
-        private TextBox textBox1;
+        private TextBox txtfiltrar;
         private Label label1;
         private Button Editar;
         private Button btnEliminar;

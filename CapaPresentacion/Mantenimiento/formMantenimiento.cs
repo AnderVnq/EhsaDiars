@@ -101,10 +101,10 @@ namespace CapaPresentacion.Mantenimiento
 
         private void formMantenimiento_Load(object sender, EventArgs e)
         {
-            List<entMantenimiento> mante = LogMantenimiento.Instancia.lista_mantenimientos();
-            foreach (entMantenimiento m in mante)
+            List<Automovil> mante = LogMantenimiento.Instancia.autos_disp();
+            foreach (Automovil m in mante)
             {
-                comboBox1.Items.Add($"ID: {m.id_vehiculo}; Vehiculo: {m.placa_vehiculo}");
+                comboBox1.Items.Add($"ID: {m.id}; Vehiculo: {m.placa}");
             }
         }
 
@@ -129,6 +129,36 @@ namespace CapaPresentacion.Mantenimiento
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id_vehiculo = null;
+            if (comboBox1.SelectedIndex != -1)
+            {
+                // Obtener la opción seleccionada y almacenarla en la variable
+                string seleccion_vehiculo = comboBox1.SelectedItem.ToString();
+
+                string patron = @"ID:\s*(\d+)";
+
+                // Buscar coincidencias utilizando la expresión regular
+                Match match = Regex.Match(comboBox1.SelectedItem.ToString(), patron);
+
+                // Verificar si se encontró una coincidencia
+                if (match.Success)
+                {
+                    // Extraer el valor del grupo capturado (el ID)
+                    id_vehiculo = match.Groups[1].Value;
+                }
+
+                if (id_vehiculo != null)
+                {
+                    //MessageBox.Show($"id {id_vehiculo}");
+                    Automovil auto = LogAutos.Instancia.get_by_id(Convert.ToInt32(id_vehiculo));
+                    txtKilometraje.Text = auto.kilometraje.ToString();
+                }
+
+            }
         }
     }
 }

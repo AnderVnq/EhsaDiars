@@ -210,6 +210,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(286, 23);
             comboBox1.TabIndex = 35;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // dateTimePicker1
             // 

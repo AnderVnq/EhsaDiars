@@ -101,7 +101,7 @@ namespace CapaPresentacion.Autos
                     {
                         MessageBox.Show("Por favor, ingrese un valor válido para la marca del vehículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    else if (!Validators.ValidarNombreApellido(txtModelo.Text))
+                    else if (!Validators.ValidarTexto(txtModelo.Text))
                     {
                         MessageBox.Show("Por favor, ingrese un valor válido para el modelo del vehículo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
