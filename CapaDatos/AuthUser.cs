@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Data;
 using CapaEntidad;
+using MySql.Data.MySqlClient;
 
 namespace CapaDatos
 {
@@ -25,33 +26,43 @@ namespace CapaDatos
 
         public bool login_auth(string username,string password)
         {
-            SqlCommand sqlComand = null;
+            MySqlCommand sqlComand = null;
             bool is_login = false;
 
             try
             {
-                SqlConnection con = Conexion.Instance.Conectar();
-                sqlComand = new SqlCommand("login", con);
+                MySqlConnection con = Conexion.Instance.Conectar();
+                sqlComand = new MySqlCommand("login", con);
                 sqlComand.CommandType = CommandType.StoredProcedure;
 
                 string sesion_id=Guid.NewGuid().ToString("N");
 
                 sqlComand.Parameters.AddWithValue("@sesion_id", sesion_id);
-                sqlComand.Parameters.AddWithValue("@username", username);
-                sqlComand.Parameters.AddWithValue("@password", password);
+                sqlComand.Parameters.AddWithValue("@input_username", username);
+                sqlComand.Parameters.AddWithValue("@input_password", password);
 
                 con.Open();
-                bool res =(bool)sqlComand.ExecuteScalar();
-                if (res == true)
+                object result = sqlComand.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
                 {
-                    is_login = true;
+                    int res = Convert.ToInt32(result);
+                    if (res == 1)
+                    {
+                        is_login = true;
+                    }
                 }
             }
             catch (Exception ex) 
             {
                 throw ex;
             }
-
+            finally
+            {
+                if (sqlComand != null)
+                {
+                    sqlComand.Connection.Close();
+                }
+            }
             return is_login;
 
         }
@@ -60,29 +71,40 @@ namespace CapaDatos
 
         public bool validate_user(string username,string password)
         {
-            SqlCommand sqlComand = null;
+            MySqlCommand sqlComand = null;
             bool is_valid = false;
 
             try
             {
-                SqlConnection con = Conexion.Instance.Conectar();
-                sqlComand = new SqlCommand("valid_user", con);
+                MySqlConnection con = Conexion.Instance.Conectar();
+                sqlComand = new MySqlCommand("valid_user", con);
                 sqlComand.CommandType = CommandType.StoredProcedure;
 
-                sqlComand.Parameters.AddWithValue("@username",username);
-                sqlComand.Parameters.AddWithValue ("@contraseña", password);
+                sqlComand.Parameters.AddWithValue("@input_username",username);
+                sqlComand.Parameters.AddWithValue ("@input_contraseña", password);
 
                 con.Open();
-                bool i = (bool)sqlComand.ExecuteScalar();
-                if (i)
+                object result = sqlComand.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
                 {
-                    is_valid = true;
+                    int res = Convert.ToInt32(result);
+                    if (res == 1)
+                    {
+                        is_valid = true;
+                    }
                 }
 
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                if (sqlComand != null)
+                {
+                    sqlComand.Connection.Close();
+                }
             }
 
             return is_valid;
@@ -90,28 +112,39 @@ namespace CapaDatos
 
         public bool validate_sessions(string sesion_id)
         {
-            SqlCommand sqlComand = null;
+            MySqlCommand sqlComand = null;
             bool activo = false;
 
             try
             {
-                SqlConnection con = Conexion.Instance.Conectar();
-                sqlComand = new SqlCommand("view_sessions", con);
+                MySqlConnection con = Conexion.Instance.Conectar();
+                sqlComand = new MySqlCommand("view_sessions", con);
                 sqlComand.CommandType = CommandType.StoredProcedure;
 
                 sqlComand.Parameters.AddWithValue("@username", sesion_id);
 
                 con.Open();
-                bool i = (bool)sqlComand.ExecuteScalar() ;
-                if (i)
+                object result = sqlComand.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
                 {
-                    activo = true;
+                    int res = Convert.ToInt32(result);
+                    if (res == 1)
+                    {
+                        activo = true;
+                    }
                 }
 
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                if (sqlComand != null)
+                {
+                    sqlComand.Connection.Close();
+                }
             }
 
             return activo;
@@ -120,25 +153,36 @@ namespace CapaDatos
 
         public bool logout(string username)
         {
-            SqlCommand sqlComand = null;
+            MySqlCommand sqlComand = null;
             bool activo=false;
             try
             {
-                SqlConnection con = Conexion.Instance.Conectar();
-                sqlComand = new SqlCommand("logout", con);
+                MySqlConnection con = Conexion.Instance.Conectar();
+                sqlComand = new MySqlCommand("logout", con);
                 sqlComand.CommandType = CommandType.StoredProcedure;
 
                 sqlComand.Parameters.AddWithValue("@username",username);
                 con.Open();
-                bool i = (bool)sqlComand.ExecuteScalar();
-                if (i)
+                object result = sqlComand.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
                 {
-                    activo = true;
+                    int res = Convert.ToInt32(result);
+                    if (res == 1)
+                    {
+                        activo = true;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                if (sqlComand != null)
+                {
+                    sqlComand.Connection.Close();
+                }
             }
             return activo;
         }
@@ -146,13 +190,13 @@ namespace CapaDatos
 
         public bool crear_user(Usuario usuario)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             bool creado = false;
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spInsertarUser", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spInsertarUser", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.AddWithValue("@nombre", usuario.nombre);
