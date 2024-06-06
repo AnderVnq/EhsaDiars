@@ -38,5 +38,11 @@ namespace CapaLogica
         }
 
 
+        public List<Automovil> autos_disp()
+        {
+            return DatAuto.Instance.autos_dips();
+        }
+
+
     }
 }

@@ -54,7 +54,7 @@ namespace CapaLogica
 
         public static bool ValidarSoloNumeros(string texto)
         {
-            if (texto.Length < 4)
+            if (texto.Length < 1)
             {
                 return false;
             }
