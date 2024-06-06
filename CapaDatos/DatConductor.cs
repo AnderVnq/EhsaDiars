@@ -1,4 +1,5 @@
 ﻿using CapaEntidad;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,15 +28,15 @@ namespace CapaDatos
 
         public List<Conductor> listar()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<Conductor> lista = new List<Conductor> ();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spListarConductor", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spListarConductor", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
                     Conductor conductor = new Conductor();
@@ -65,17 +66,17 @@ namespace CapaDatos
 
         public Conductor Get_Id(int id)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Conductor conductor = new Conductor();
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spConductorById", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spConductorById", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
 
                 if(reader.Read())
                 {
@@ -111,12 +112,12 @@ namespace CapaDatos
 
         public Boolean ActualizarConductor(int id, string nombre, string apellido, string licencia, string tipo_licencia, string telefono, string direccion, string dni)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Boolean actualiza = false;
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spUpdateConductor", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spUpdateConductor", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 // Agregar parámetros para el procedimiento almacenado
@@ -155,13 +156,13 @@ namespace CapaDatos
 
         public Boolean createConductor(Conductor conductor)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Boolean creado = false;
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spInsertarConductor", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spInsertarConductor", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.AddWithValue("@nombre", conductor.nombre);
@@ -199,13 +200,13 @@ namespace CapaDatos
 
         public Boolean deleteConductor(int id)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Boolean eliminado = false;
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spEliminar", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spEliminar", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.AddWithValue("@id",id);

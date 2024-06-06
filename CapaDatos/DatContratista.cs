@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace CapaDatos
 {
@@ -26,15 +27,15 @@ namespace CapaDatos
 
         public List<Contratistas> list_contratistas()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<Contratistas> lista = new List<Contratistas>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("splistarContratistas", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("splistarContratistas", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
                     Contratistas contratista = new Contratistas();
@@ -64,13 +65,13 @@ namespace CapaDatos
 
         public Boolean createContratista(Contratistas contratista)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Boolean creado = false;
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("createContratista", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("createContratista", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.AddWithValue("@tipo_documento", contratista.tipo_documento);
@@ -104,13 +105,13 @@ namespace CapaDatos
 
         public Boolean deleteContratista(int id)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Boolean eliminado = false;
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spEliminarContratista", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spEliminarContratista", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.AddWithValue("@id", id);
@@ -142,15 +143,15 @@ namespace CapaDatos
 
         public List<OrdenMantenimiento> listar_orden_mantenimiento()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<OrdenMantenimiento> lista = new List<OrdenMantenimiento>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("splistarOrdenes", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("splistarOrdenes", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
                     OrdenMantenimiento orden = new OrdenMantenimiento();

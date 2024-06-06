@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace CapaDatos
 {
@@ -24,20 +25,20 @@ namespace CapaDatos
 
         public List<Automovil> listar()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<Automovil> lista = new List<Automovil>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spListarAutos", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spListarAutos", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
                     Automovil automovil = new Automovil();
-                    automovil.id= Convert.ToInt32(reader["id_vehiculo"]);
-                    automovil.id_conductor= Convert.ToInt32(reader["id_conductor"]);
+                    automovil.id = Convert.ToInt32(reader["id_vehiculo"]);
+                    automovil.id_conductor = Convert.ToInt32(reader["id_conductor"]);
                     automovil.conductor = reader["nombre"].ToString();
                     automovil.marca = reader["marca"].ToString();
                     automovil.modelo = reader["modelo"].ToString();
@@ -45,6 +46,7 @@ namespace CapaDatos
                     automovil.capacidad = reader["capacidad_pasajeros"].ToString();
                     automovil.kilometraje = reader["kilometraje"].ToString();
                     automovil.estado = Convert.ToBoolean(reader["estado"]);
+                    automovil.placa = reader["placa"].ToString();
                     lista.Add(automovil);
                 }
             }
@@ -62,20 +64,20 @@ namespace CapaDatos
 
         public List<Conductor> listar_conductores_disp()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<Conductor> lista = new List<Conductor>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("ConductorNoAsigAuto", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("ConductorNoAsigAuto", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
                     Conductor conductor = new Conductor();
                     conductor.id = Convert.ToInt32(reader["id_conductor"]);
-                    conductor.nombre =reader["nombre"].ToString();
+                    conductor.nombre = reader["nombre"].ToString();
                     conductor.tipo_licencia = reader["tipo_licencia"].ToString();
                     lista.Add(conductor);
                 }
@@ -97,17 +99,17 @@ namespace CapaDatos
 
         public Automovil Get_Id(int id)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Automovil auto = new Automovil();
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("vehiculo_by_id", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("vehiculo_by_id", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
 
                 if (reader.Read())
                 {
@@ -143,23 +145,23 @@ namespace CapaDatos
 
         public Boolean ActualizarAuto(Automovil auto)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Boolean actualiza = false;
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spUpdateVehiculo", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spUpdateVehiculo", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 // Agregar parámetros para el procedimiento almacenado
                 sqlCommand.Parameters.AddWithValue("@id", auto.id);
-                sqlCommand.Parameters.AddWithValue("@id_conductor",auto.id_conductor);
-                sqlCommand.Parameters.AddWithValue("@marca",auto.marca);
-                sqlCommand.Parameters.AddWithValue("@modelo",auto.modelo);
+                sqlCommand.Parameters.AddWithValue("@id_conductor", auto.id_conductor);
+                sqlCommand.Parameters.AddWithValue("@marca", auto.marca);
+                sqlCommand.Parameters.AddWithValue("@modelo", auto.modelo);
                 sqlCommand.Parameters.AddWithValue("@fabricacion", auto.fabricacion);
                 sqlCommand.Parameters.AddWithValue("@capacidad", auto.capacidad);
                 sqlCommand.Parameters.AddWithValue("@kilometraje", auto.kilometraje);
-                sqlCommand.Parameters.AddWithValue("@placa",auto.placa);
+                sqlCommand.Parameters.AddWithValue("@placa", auto.placa);
                 sqlCommand.Parameters.AddWithValue("@estado", auto.estado);
                 // Agrega otros parámetros para otros campos que deseas actualizar
 
@@ -188,19 +190,19 @@ namespace CapaDatos
 
         public Boolean createAutomovil(Automovil auto)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             bool creado = false;
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spInsertVehiculo", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spInsertVehiculo", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                sqlCommand.Parameters.AddWithValue("@id_conductor",auto.id_conductor);
+                sqlCommand.Parameters.AddWithValue("@id_conductor", auto.id_conductor);
                 sqlCommand.Parameters.AddWithValue("@marca", auto.marca);
                 sqlCommand.Parameters.AddWithValue("@modelo", auto.modelo);
-                sqlCommand.Parameters.AddWithValue("@fabricacion",auto.fabricacion);
+                sqlCommand.Parameters.AddWithValue("@fabricacion", auto.fabricacion);
                 sqlCommand.Parameters.AddWithValue("@capacidad", auto.capacidad);
                 sqlCommand.Parameters.AddWithValue("@kilometraje", auto.kilometraje);
                 sqlCommand.Parameters.AddWithValue("@placa", auto.placa);
@@ -231,13 +233,13 @@ namespace CapaDatos
 
         public Boolean deleteAuto(int id)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Boolean eliminado = false;
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spEliminarAuto", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spEliminarAuto", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.AddWithValue("@id", id);
@@ -269,17 +271,17 @@ namespace CapaDatos
 
         public List<string> detalle_vehiculo(int id)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             bool detalle = false;
             List<string> list = null;
             try
             {
-                SqlConnection con = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spEspecicficaciones", con);
+                MySqlConnection con = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spEspecicficaciones", con);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 con.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 list = new List<string>();
                 if (reader.Read())
                 {
@@ -305,13 +307,13 @@ namespace CapaDatos
 
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 throw ex;
             }
             finally
             {
-                if(sqlCommand != null)
+                if (sqlCommand != null)
                 {
                     sqlCommand.Connection.Close();
                 }
@@ -321,5 +323,44 @@ namespace CapaDatos
 
 
 
+
+        public List<Automovil> autos_dips()
+        {
+            MySqlCommand sqlCommand = null;
+            List<Automovil> lista = new List<Automovil>();
+            try
+            {
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("vehiculos_Disp", cn);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Automovil automovil = new Automovil();
+                    automovil.id = Convert.ToInt32(reader["id_vehiculo"]);
+                    automovil.id_conductor = Convert.ToInt32(reader["id_conductor"]);
+                    automovil.conductor = reader["nombre"].ToString();
+                    automovil.marca = reader["marca"].ToString();
+                    automovil.modelo = reader["modelo"].ToString();
+                    automovil.fabricacion = Convert.ToDateTime(reader["anio_fabricacion"]);
+                    automovil.capacidad = reader["capacidad_pasajeros"].ToString();
+                    automovil.kilometraje = reader["kilometraje"].ToString();
+                    automovil.estado = Convert.ToBoolean(reader["estado"]);
+                    automovil.placa = reader["placa"].ToString();
+                    lista.Add(automovil);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlCommand.Connection.Close();
+            }
+            return lista;
+
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace CapaDatos
 {
@@ -26,16 +27,16 @@ namespace CapaDatos
 
         public List<Taller> listar_taller()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<Taller> lista = new List<Taller>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("splistarTaller", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("splistarTaller", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
 
@@ -61,16 +62,16 @@ namespace CapaDatos
 
         public List<Mantenimiento_interno> listar_Mante_interno()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<Mantenimiento_interno> lista = new List<Mantenimiento_interno>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("listaManteInterno", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("listaManteInterno", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
 

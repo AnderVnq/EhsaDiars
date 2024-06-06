@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace CapaDatos
 {
@@ -27,16 +28,16 @@ namespace CapaDatos
 
         public List<Tecnico> list_tecnicos()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<Tecnico> lista = new List<Tecnico>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spListarTecnicos", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spListarTecnicos", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
                     Tecnico mante = new Tecnico();

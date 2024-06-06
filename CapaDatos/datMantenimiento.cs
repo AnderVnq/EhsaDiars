@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace CapaDatos
 {
@@ -24,16 +25,16 @@ namespace CapaDatos
 
         public List<entMantenimiento> listar()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<entMantenimiento> lista = new List<entMantenimiento>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spListMantenimiento", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spListMantenimiento", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
                     entMantenimiento mante = new entMantenimiento();
@@ -65,13 +66,13 @@ namespace CapaDatos
 
         public bool crearMantenimiento(entMantenimiento mantenimiento)
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             Boolean creado = false;
 
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("spInsertarMantenimiento", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("spInsertarMantenimiento", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 sqlCommand.Parameters.AddWithValue("@id_vehiculo",mantenimiento.id_vehiculo);
@@ -107,16 +108,17 @@ namespace CapaDatos
 
         public List<entMantenimiento> Mantemintos_disp()
         {
-            SqlCommand sqlCommand = null;
+            MySqlCommand sqlCommand = null;
             List<entMantenimiento> lista = new List<entMantenimiento>();
             try
             {
-                SqlConnection cn = Conexion.Instance.Conectar();
-                sqlCommand = new SqlCommand("mantenimientos_Disponibles", cn);
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                
+                sqlCommand = new MySqlCommand("mantenimientos_Disponibles", cn);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
-                SqlDataReader reader = sqlCommand.ExecuteReader();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
                     entMantenimiento mante = new entMantenimiento();
