@@ -36,13 +36,11 @@
             label7 = new Label();
             label6 = new Label();
             label4 = new Label();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txtComponente = new TextBox();
+            txtPlaca = new TextBox();
             lblprecio = new Label();
             label3 = new Label();
-            comboBox1 = new ComboBox();
-            radioButton2 = new RadioButton();
-            radioButton1 = new RadioButton();
+            comboMante = new ComboBox();
             dataGridView1 = new DataGridView();
             Editar = new Button();
             button1 = new Button();
@@ -67,7 +65,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(745, 66);
+            label2.Location = new Point(747, 51);
             label2.Name = "label2";
             label2.Size = new Size(106, 21);
             label2.TabIndex = 1;
@@ -77,7 +75,7 @@
             // 
             lblfecha.AutoSize = true;
             lblfecha.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblfecha.Location = new Point(857, 69);
+            lblfecha.Location = new Point(859, 54);
             lblfecha.Name = "lblfecha";
             lblfecha.Size = new Size(88, 17);
             lblfecha.TabIndex = 2;
@@ -88,16 +86,14 @@
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(textBox2);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(txtComponente);
+            groupBox1.Controls.Add(txtPlaca);
             groupBox1.Controls.Add(lblprecio);
             groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(comboBox1);
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
-            groupBox1.Location = new Point(58, 90);
+            groupBox1.Controls.Add(comboMante);
+            groupBox1.Location = new Point(58, 75);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(933, 156);
+            groupBox1.Size = new Size(933, 171);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "Area de Pagos";
@@ -106,17 +102,17 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(111, 100);
+            label7.Location = new Point(20, 88);
             label7.Name = "label7";
-            label7.Size = new Size(58, 17);
+            label7.Size = new Size(93, 17);
             label7.TabIndex = 13;
-            label7.Text = "Vehiculo";
+            label7.Text = "Vehiculo Placa";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(87, 45);
+            label6.Location = new Point(6, 43);
             label6.Name = "label6";
             label6.Size = new Size(107, 17);
             label6.TabIndex = 12;
@@ -132,26 +128,28 @@
             label4.TabIndex = 10;
             label4.Text = "Componente";
             // 
-            // textBox2
+            // txtComponente
             // 
-            textBox2.Location = new Point(504, 44);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(186, 74);
-            textBox2.TabIndex = 8;
+            txtComponente.Location = new Point(504, 44);
+            txtComponente.Multiline = true;
+            txtComponente.Name = "txtComponente";
+            txtComponente.ReadOnly = true;
+            txtComponente.Size = new Size(186, 74);
+            txtComponente.TabIndex = 8;
             // 
-            // textBox1
+            // txtPlaca
             // 
-            textBox1.Location = new Point(207, 100);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(186, 23);
-            textBox1.TabIndex = 7;
+            txtPlaca.Location = new Point(126, 88);
+            txtPlaca.Name = "txtPlaca";
+            txtPlaca.ReadOnly = true;
+            txtPlaca.Size = new Size(186, 23);
+            txtPlaca.TabIndex = 7;
             // 
             // lblprecio
             // 
             lblprecio.AutoSize = true;
             lblprecio.Font = new Font("Georgia", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblprecio.Location = new Point(813, 90);
+            lblprecio.Location = new Point(801, 78);
             lblprecio.Name = "lblprecio";
             lblprecio.Size = new Size(21, 16);
             lblprecio.TabIndex = 6;
@@ -167,35 +165,14 @@
             label3.TabIndex = 5;
             label3.Text = "Costo Del mantenimiento";
             // 
-            // comboBox1
+            // comboMante
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(207, 43);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(186, 23);
-            comboBox1.TabIndex = 2;
-            // 
-            // radioButton2
-            // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(6, 90);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(65, 19);
-            radioButton2.TabIndex = 1;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Externo";
-            radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(6, 43);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(63, 19);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Interno";
-            radioButton1.UseVisualStyleBackColor = true;
+            comboMante.FormattingEnabled = true;
+            comboMante.Location = new Point(126, 41);
+            comboMante.Name = "comboMante";
+            comboMante.Size = new Size(186, 23);
+            comboMante.TabIndex = 2;
+            comboMante.SelectedIndexChanged += comboMante_SelectedIndexChanged;
             // 
             // dataGridView1
             // 
@@ -304,14 +281,12 @@
         private DataGridView dataGridView1;
         private Label lblprecio;
         private Label label3;
-        private ComboBox comboBox1;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
+        private ComboBox comboMante;
         private Label label7;
         private Label label6;
         private Label label4;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txtComponente;
+        private TextBox txtPlaca;
         private Button Editar;
         private Button button1;
         private Button button2;
