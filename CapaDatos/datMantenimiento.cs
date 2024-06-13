@@ -145,5 +145,55 @@ namespace CapaDatos
             }
             return lista;
         }
+
+
+
+
+        public entMantenimiento mantenimiento_byId(int id)
+        {
+            MySqlCommand sqlCommand = null;
+            //entMantenimiento conductor = new entMantenimiento();
+            entMantenimiento mante = new entMantenimiento();
+
+            try
+            {
+                MySqlConnection cn = Conexion.Instance.Conectar();
+                sqlCommand = new MySqlCommand("mantenimiento_byId", cn);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@id", id);
+                cn.Open();
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    mante.id = Convert.ToInt32(reader["id_mantenimiento"]);
+                    mante.id_vehiculo = Convert.ToInt32(reader["id_vehiculo"]);
+                    mante.placa_vehiculo = reader["placa"].ToString();
+                    mante.fecha_mantenimiento = Convert.ToDateTime(reader["fecha_mantenimiento"]);
+                    mante.tipo_mantenimiento = reader["tipo_mantenimiento"].ToString();
+                    mante.componente = reader["componente_reparado"].ToString().ToLower();
+                    mante.kilometraje = reader["kilometraje"].ToString().ToLower();
+                    mante.comentario = reader["comentarios"].ToString().ToLower();
+                    mante.costo = Convert.ToSingle(reader["costo"]);
+                    mante.estado = Convert.ToBoolean(reader["estado"]);
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                sqlCommand.Connection.Close();
+            }
+
+            return mante;
+        }
     }
 }
