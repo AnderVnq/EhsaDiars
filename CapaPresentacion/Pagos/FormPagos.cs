@@ -30,7 +30,7 @@ namespace CapaPresentacion.Pagos
         private void FormPagos_Load(object sender, EventArgs e)
         {
             lblfecha.Text = DateTime.Now.ToString();
-            lblprecio.Text = "S/500";
+            lblprecio.Text = "S/00";
 
             List<entMantenimiento> lista = LogMantenimiento.Instancia.mantenimientos_disp();
 
@@ -83,6 +83,7 @@ namespace CapaPresentacion.Pagos
                     entMantenimiento entMantenimiento = LogPagos.Instancia.manteById(Convert.ToInt32(id_mantenimiento));
                     txtPlaca.Text = entMantenimiento.placa_vehiculo.ToString();
                     txtComponente.Text= entMantenimiento.componente.ToString();
+                    lblprecio.Text = $"S/{entMantenimiento.costo.ToString()}";
                 }
             }
 
